@@ -1,0 +1,396 @@
+[gd_scene load_steps=17 format=3 uid="uid://nh3s60x5dvxl"]
+
+[ext_resource type="Script" path="res://src/scenes/UI/screens/term_screen/term_screen.gd" id="1_jnuok"]
+[ext_resource type="Script" path="res://src/scripts/GUI/button.gd" id="2_4uwo6"]
+[ext_resource type="Texture2D" uid="uid://yifdsrpso2xm" path="res://src/resources/intention&table/back1.png" id="3_ye3fc"]
+[ext_resource type="Texture2D" uid="uid://cvsskbget8hoa" path="res://src/resources/intention&table/back2.png" id="4_vif7r"]
+[ext_resource type="Texture2D" uid="uid://cehthxkj471cr" path="res://src/resources/intention&table/术语表-2.png" id="5_d7nrg"]
+[ext_resource type="FontFile" uid="uid://c1002r6e15b28" path="res://src/resources/global/fonts/HanYiZhongYuanJian-1.ttf" id="5_n0t1k"]
+[ext_resource type="Texture2D" uid="uid://cpsu0oqbdr4wn" path="res://src/resources/GUI/buttons&others/下滑键.png" id="6_xgo0q"]
+[ext_resource type="Texture2D" uid="uid://g8yp3yuqmvkj" path="res://src/resources/zh-CN/9.png" id="7_gkpw6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0c2wm"]
+font = ExtResource("5_n0t1k")
+font_size = 36
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dpyqr"]
+font = ExtResource("5_n0t1k")
+font_size = 36
+outline_size = 12
+outline_color = Color(0.0110876, 0.0110876, 0.0110876, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4py2v"]
+font = ExtResource("5_n0t1k")
+font_size = 36
+outline_size = 12
+outline_color = Color(0.0110876, 0.0110876, 0.0110876, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_smq5j"]
+font = ExtResource("5_n0t1k")
+font_size = 36
+outline_size = 12
+outline_color = Color(0.0110876, 0.0110876, 0.0110876, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b2qa4"]
+font = ExtResource("5_n0t1k")
+font_size = 36
+outline_size = 12
+outline_color = Color(0.0110876, 0.0110876, 0.0110876, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6re6f"]
+font = ExtResource("5_n0t1k")
+font_size = 36
+outline_size = 12
+outline_color = Color(0.0110876, 0.0110876, 0.0110876, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mdcuw"]
+font = ExtResource("5_n0t1k")
+font_size = 36
+outline_size = 12
+outline_color = Color(0.0110876, 0.0110876, 0.0110876, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_70hfh"]
+font = ExtResource("5_n0t1k")
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TermScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jnuok")
+
+[node name="Return" type="TextureButton" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = -29.0
+offset_right = 442.0
+offset_bottom = 220.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("7_gkpw6")
+texture_pressed = ExtResource("7_gkpw6")
+texture_hover = ExtResource("7_gkpw6")
+script = ExtResource("2_4uwo6")
+
+[node name="back2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("3_ye3fc")
+
+[node name="Label" type="Label" parent="back2"]
+offset_left = 220.0
+offset_top = 231.0
+offset_right = 508.0
+offset_bottom = 268.0
+text = "敌人将要发动攻击"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label2" type="Label" parent="back2"]
+offset_left = 220.0
+offset_top = 377.0
+offset_right = 508.0
+offset_bottom = 414.0
+text = "敌人将要获得格挡"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label3" type="Label" parent="back2"]
+offset_left = 220.0
+offset_top = 538.0
+offset_right = 508.0
+offset_bottom = 575.0
+text = "敌人将要获得增益"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label4" type="Label" parent="back2"]
+offset_left = 220.0
+offset_top = 684.0
+offset_right = 508.0
+offset_bottom = 721.0
+text = "敌人将要造成减益"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label5" type="Label" parent="back2"]
+offset_left = 220.0
+offset_top = 813.0
+offset_right = 508.0
+offset_bottom = 890.0
+text = "敌人将要进行
+特殊行动"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label6" type="Label" parent="back2"]
+offset_left = 686.0
+offset_top = 231.0
+offset_right = 974.0
+offset_bottom = 308.0
+text = "被箭头指向的牌
+获得增益"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label7" type="Label" parent="back2"]
+offset_left = 686.0
+offset_top = 398.0
+offset_right = 974.0
+offset_bottom = 475.0
+text = "被箭头指向的牌
+获得减益"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label8" type="Label" parent="back2"]
+offset_left = 686.0
+offset_top = 558.0
+offset_right = 974.0
+offset_bottom = 635.0
+text = "箭头指向牌时，
+发动特殊效果"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label9" type="Label" parent="back2"]
+offset_left = 686.0
+offset_top = 721.0
+offset_right = 1082.0
+offset_bottom = 798.0
+text = "箭头指向锁定的格子时，
+将其解锁"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label10" type="Label" parent="back2"]
+offset_left = 1209.0
+offset_top = 866.0
+offset_right = 1605.0
+offset_bottom = 943.0
+text = "锁定的格子，
+不能放置卡牌。"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label11" type="Label" parent="back2"]
+offset_left = 1225.0
+offset_top = 268.0
+offset_right = 1349.0
+offset_bottom = 319.0
+text = "攻击牌"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label12" type="Label" parent="back2"]
+offset_left = 1225.0
+offset_top = 696.0
+offset_right = 1349.0
+offset_bottom = 747.0
+text = "防御牌"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label13" type="Label" parent="back2"]
+offset_left = 1225.0
+offset_top = 492.0
+offset_right = 1349.0
+offset_bottom = 543.0
+text = "治疗牌"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label14" type="Label" parent="back2"]
+offset_left = 1580.0
+offset_top = 256.0
+offset_right = 1760.0
+offset_bottom = 307.0
+text = "特殊效果牌"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label15" type="Label" parent="back2"]
+offset_left = 1580.0
+offset_top = 492.0
+offset_right = 1760.0
+offset_bottom = 543.0
+text = "解锁格子牌"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label16" type="Label" parent="back2"]
+offset_left = 1580.0
+offset_top = 660.0
+offset_right = 1796.0
+offset_bottom = 777.0
+text = "垃圾牌：
+未打出时
+才会发动效果"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="back1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("4_vif7r")
+
+[node name="Label" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 521.0
+offset_right = 274.0
+offset_bottom = 558.0
+text = "攻击牌"
+label_settings = SubResource("LabelSettings_dpyqr")
+
+[node name="Label2" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 521.0
+offset_right = 557.0
+offset_bottom = 558.0
+text = "治疗牌"
+label_settings = SubResource("LabelSettings_4py2v")
+
+[node name="Label3" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 724.0
+offset_top = 521.0
+offset_right = 832.0
+offset_bottom = 558.0
+text = "防御牌"
+label_settings = SubResource("LabelSettings_smq5j")
+
+[node name="Label4" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 521.0
+offset_right = 1188.0
+offset_bottom = 558.0
+text = "特殊牌"
+label_settings = SubResource("LabelSettings_b2qa4")
+
+[node name="Label5" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 1310.0
+offset_top = 521.0
+offset_right = 1490.0
+offset_bottom = 558.0
+text = "解锁格子牌"
+label_settings = SubResource("LabelSettings_6re6f")
+
+[node name="Label6" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 1610.0
+offset_top = 521.0
+offset_right = 1718.0
+offset_bottom = 558.0
+text = "垃圾牌"
+label_settings = SubResource("LabelSettings_mdcuw")
+
+[node name="Label7" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 696.0
+offset_right = 460.0
+offset_bottom = 749.0
+text = "创伤：回合结束时失去
+等量生命，层数-1"
+label_settings = SubResource("LabelSettings_70hfh")
+
+[node name="Label8" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 797.0
+offset_right = 460.0
+offset_bottom = 850.0
+text = "失活：降低等量伤害，
+回合结束时-1"
+label_settings = SubResource("LabelSettings_70hfh")
+
+[node name="Label9" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 557.0
+offset_top = 696.0
+offset_right = 797.0
+offset_bottom = 749.0
+text = "增援：每回合额外
+抽1张牌"
+label_settings = SubResource("LabelSettings_70hfh")
+
+[node name="Label10" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 557.0
+offset_top = 797.0
+offset_right = 797.0
+offset_bottom = 850.0
+text = "尖刺：受到伤害时，
+对来源造成层数点伤害"
+label_settings = SubResource("LabelSettings_70hfh")
+
+[node name="Label11" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 911.0
+offset_top = 696.0
+offset_right = 1151.0
+offset_bottom = 749.0
+text = "易伤：额外受到等量
+伤害，回合结束时-1"
+label_settings = SubResource("LabelSettings_70hfh")
+
+[node name="Label12" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 911.0
+offset_top = 797.0
+offset_right = 1151.0
+offset_bottom = 850.0
+text = "晕眩：在接下来的等量
+回合中不能行动"
+label_settings = SubResource("LabelSettings_70hfh")
+
+[node name="Label13" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 1225.0
+offset_top = 706.0
+offset_right = 1465.0
+offset_bottom = 759.0
+text = "消毒：垃圾牌被无效"
+label_settings = SubResource("LabelSettings_70hfh")
+
+[node name="Label14" type="Label" parent="back1"]
+layout_mode = 0
+offset_left = 1555.0
+offset_top = 696.0
+offset_right = 1795.0
+offset_bottom = 749.0
+text = "麻痹：等量减少获得的
+格挡，回合结束时-1"
+label_settings = SubResource("LabelSettings_70hfh")
+
+[node name="title" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 494.0
+offset_top = -122.0
+offset_right = 1460.0
+offset_bottom = 320.0
+texture = ExtResource("5_d7nrg")
+
+[node name="termleft" type="TextureButton" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 115.0
+offset_top = 512.0
+offset_right = 239.0
+offset_bottom = 586.0
+rotation = 1.5708
+texture_normal = ExtResource("6_xgo0q")
+script = ExtResource("2_4uwo6")
+
+[node name="termright" type="TextureButton" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 1811.0
+offset_top = 626.0
+offset_right = 1935.0
+offset_bottom = 700.0
+rotation = -1.5708
+texture_normal = ExtResource("6_xgo0q")
+script = ExtResource("2_4uwo6")
+
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="termleft" to="." method="_on_termleft_pressed"]
+[connection signal="pressed" from="termright" to="." method="_on_termright_pressed"]

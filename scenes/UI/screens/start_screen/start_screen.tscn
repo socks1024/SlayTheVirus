@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfl4kxxx0h57t"]
+
+[ext_resource type="Script" path="res://src/scenes/UI/screens/start_screen/start_screen.gd" id="1_rko58"]
+[ext_resource type="Texture2D" uid="uid://cxj627rt5hdqj" path="res://src/resources/zh-CN/13.png" id="2_dsctg"]
+[ext_resource type="Texture2D" uid="uid://c8uxr1eceq5u6" path="res://src/resources/zh-CN/6.png" id="3_s0n3h"]
+[ext_resource type="Texture2D" uid="uid://74idsvx4web2" path="res://src/resources/zh-CN/8.png" id="4_fpwqt"]
+[ext_resource type="Script" path="res://src/scripts/GUI/button.gd" id="4_l3y47"]
+[ext_resource type="Texture2D" uid="uid://dwfgnf7tp1yxg" path="res://src/resources/zh-CN/1.png" id="6_fxnsn"]
+[ext_resource type="Texture2D" uid="uid://dugfoq5c3dvlp" path="res://src/resources/zh-CN/4.png" id="7_rslbu"]
+[ext_resource type="VideoStream" path="res://src/resources/video/Main_story_Chinese.mp4" id="8_psroi"]
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rko58")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_dsctg")
+
+[node name="StartButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 312.0
+offset_right = 642.0
+offset_bottom = 618.0
+texture_normal = ExtResource("3_s0n3h")
+texture_pressed = ExtResource("3_s0n3h")
+texture_hover = ExtResource("3_s0n3h")
+script = ExtResource("4_l3y47")
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 572.0
+offset_right = 737.0
+offset_bottom = 878.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("4_fpwqt")
+texture_pressed = ExtResource("4_fpwqt")
+texture_hover = ExtResource("4_fpwqt")
+script = ExtResource("4_l3y47")
+
+[node name="CreditsButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 739.0
+offset_right = 986.0
+offset_bottom = 1062.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("6_fxnsn")
+script = ExtResource("4_l3y47")
+
+[node name="ExitButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 875.0
+offset_right = 488.0
+offset_bottom = 1075.0
+texture_normal = ExtResource("7_rslbu")
+texture_pressed = ExtResource("7_rslbu")
+texture_hover = ExtResource("7_rslbu")
+script = ExtResource("4_l3y47")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+z_index = 10
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("8_psroi")
+autoplay = true
+
+[node name="Timer" type="Timer" parent="VideoStreamPlayer"]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="timeout" from="VideoStreamPlayer/Timer" to="." method="_on_timer_timeout"]

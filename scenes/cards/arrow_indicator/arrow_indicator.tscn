@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://lkrjo2q6ut8m"]
+
+[ext_resource type="Script" path="res://src/scenes/cards/arrow_indicator/arrow_indicator.gd" id="1_rs8gm"]
+[ext_resource type="Texture2D" uid="uid://brq63w0fkye72" path="res://src/resources/global/dashed line .png" id="2_41e03"]
+
+[node name="ArrowIndicator" type="Node2D"]
+z_index = 9
+position = Vector2(1, 0)
+rotation = 1.5708
+script = ExtResource("1_rs8gm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_41e03")
+centered = false
+offset = Vector2(-138, -840)

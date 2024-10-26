@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs1u7tjq5vtyx"]
+
+[ext_resource type="Script" path="res://src/scenes/UI/screens/select_deck_screen/showed_card/showed_card.gd" id="1_2wjuy"]
+[ext_resource type="PackedScene" uid="uid://cylhwc30dmd73" path="res://src/scenes/cards/cards/card_sample.tscn" id="2_tjxsq"]
+
+[node name="ShowedCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2wjuy")
+
+[node name="Button" type="Button" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = -107.0
+offset_top = -168.0
+offset_right = 93.0
+offset_bottom = 132.0
+
+[node name="CardSample" parent="." instance=ExtResource("2_tjxsq")]
+visible = false
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

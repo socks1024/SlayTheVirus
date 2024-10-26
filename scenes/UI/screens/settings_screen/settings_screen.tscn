@@ -1,0 +1,294 @@
+[gd_scene load_steps=14 format=3 uid="uid://c4ju6sbo263b8"]
+
+[ext_resource type="Script" path="res://src/scenes/UI/screens/settings_screen/settings_screen.gd" id="1_740b5"]
+[ext_resource type="Texture2D" uid="uid://dg06ilhgmdp3q" path="res://src/resources/GUI/levels/choose_level/back.png" id="2_isghn"]
+[ext_resource type="Texture2D" uid="uid://dn1sp72q63ffa" path="res://src/resources/GUI/buttons&others/front.png" id="3_r0tqy"]
+[ext_resource type="Texture2D" uid="uid://g8yp3yuqmvkj" path="res://src/resources/zh-CN/9.png" id="4_helt2"]
+[ext_resource type="Script" path="res://src/scripts/GUI/button.gd" id="5_4og2s"]
+[ext_resource type="Texture2D" uid="uid://1aejfn07u05t" path="res://src/resources/zh-CN/3.png" id="5_xwicr"]
+[ext_resource type="Texture2D" uid="uid://c7vuhq3tfgvlo" path="res://src/resources/zh-CN/2.png" id="6_hv86k"]
+[ext_resource type="Theme" uid="uid://cdouue57xl5jo" path="res://src/resources/global/themes/new_theme.tres" id="7_1w8le"]
+[ext_resource type="Texture2D" uid="uid://4esd46jjvoum" path="res://src/resources/GUI/buttons&others/操作提示.png" id="7_n3qug"]
+[ext_resource type="FontFile" uid="uid://c1002r6e15b28" path="res://src/resources/global/fonts/HanYiZhongYuanJian-1.ttf" id="8_jacts"]
+[ext_resource type="Texture2D" uid="uid://fa5fti5u7agj" path="res://src/resources/intention&table/术语表-1.png" id="10_xbpkj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vs01v"]
+font = ExtResource("8_jacts")
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j3338"]
+font = ExtResource("8_jacts")
+font_size = 60
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SettingsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_740b5")
+
+[node name="Back" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_isghn")
+
+[node name="Front" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_r0tqy")
+
+[node name="Return" type="TextureButton" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = -29.0
+offset_right = 442.0
+offset_bottom = 220.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("4_helt2")
+texture_pressed = ExtResource("4_helt2")
+texture_hover = ExtResource("4_helt2")
+script = ExtResource("5_4og2s")
+
+[node name="Operation" type="TextureButton" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = 1004.0
+offset_top = -11.0
+offset_right = 1875.0
+offset_bottom = 193.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("5_xwicr")
+texture_pressed = ExtResource("5_xwicr")
+texture_hover = ExtResource("5_xwicr")
+script = ExtResource("5_4og2s")
+
+[node name="Game" type="TextureButton" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = 288.0
+offset_top = -11.0
+offset_right = 1159.0
+offset_bottom = 193.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("6_hv86k")
+texture_pressed = ExtResource("6_hv86k")
+texture_hover = ExtResource("6_hv86k")
+script = ExtResource("5_4og2s")
+
+[node name="GameRoot" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VolumeSettings" type="Control" parent="GameRoot"]
+anchors_preset = 0
+offset_left = 1100.0
+offset_right = 1140.0
+offset_bottom = 40.0
+
+[node name="MainVolume" type="Control" parent="GameRoot/VolumeSettings"]
+anchors_preset = 0
+offset_top = 200.0
+offset_right = 40.0
+offset_bottom = 240.0
+
+[node name="MainSlider" type="HSlider" parent="GameRoot/VolumeSettings/MainVolume"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = -15.0
+offset_right = 711.0
+offset_bottom = 61.0
+theme = ExtResource("7_1w8le")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Label" type="Label" parent="GameRoot/VolumeSettings/MainVolume"]
+layout_mode = 0
+offset_left = 0.00012207
+offset_top = -1.52588e-05
+offset_right = 144.0
+offset_bottom = 49.0
+text = "主音量"
+label_settings = SubResource("LabelSettings_vs01v")
+
+[node name="MusicVolume" type="Control" parent="GameRoot/VolumeSettings"]
+anchors_preset = 0
+offset_top = 300.0
+offset_right = 40.0
+offset_bottom = 340.0
+
+[node name="MusicSlider" type="HSlider" parent="GameRoot/VolumeSettings/MusicVolume"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = -15.0
+offset_right = 711.0
+offset_bottom = 61.0
+theme = ExtResource("7_1w8le")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Label" type="Label" parent="GameRoot/VolumeSettings/MusicVolume"]
+layout_mode = 0
+offset_left = 0.00012207
+offset_top = -1.52588e-05
+offset_right = 144.0
+offset_bottom = 49.0
+text = "音乐音量
+"
+label_settings = SubResource("LabelSettings_vs01v")
+
+[node name="SoundVolume" type="Control" parent="GameRoot/VolumeSettings"]
+anchors_preset = 0
+offset_top = 400.0
+offset_right = 40.0
+offset_bottom = 440.0
+
+[node name="SoundSlider" type="HSlider" parent="GameRoot/VolumeSettings/SoundVolume"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = -15.0
+offset_right = 711.0
+offset_bottom = 61.0
+theme = ExtResource("7_1w8le")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Label" type="Label" parent="GameRoot/VolumeSettings/SoundVolume"]
+layout_mode = 0
+offset_left = 0.00012207
+offset_top = -1.52588e-05
+offset_right = 144.0
+offset_bottom = 49.0
+text = "音效音量
+"
+label_settings = SubResource("LabelSettings_vs01v")
+
+[node name="DisplaySettings" type="Control" parent="GameRoot"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Language" type="Control" parent="GameRoot/DisplaySettings"]
+anchors_preset = 0
+offset_left = 223.0
+offset_top = 200.0
+offset_right = 263.0
+offset_bottom = 240.0
+
+[node name="OptionButton" type="OptionButton" parent="GameRoot/DisplaySettings/Language"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = -15.0
+offset_right = 631.0
+offset_bottom = 85.0
+theme = ExtResource("7_1w8le")
+selected = 0
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "   中文"
+popup/item_1/text = "   English(unfinished)"
+popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="GameRoot/DisplaySettings/Language"]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 60.0
+text = "语言"
+label_settings = SubResource("LabelSettings_j3338")
+
+[node name="Resolution" type="Control" parent="GameRoot/DisplaySettings"]
+anchors_preset = 0
+offset_left = 223.0
+offset_top = 361.0
+offset_right = 263.0
+offset_bottom = 401.0
+
+[node name="OptionButton" type="OptionButton" parent="GameRoot/DisplaySettings/Resolution"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = -15.0
+offset_right = 631.0
+offset_bottom = 85.0
+theme = ExtResource("7_1w8le")
+selected = 1
+item_count = 2
+popup/item_0/text = "   2560×1440"
+popup/item_1/text = "   1920×1080"
+popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="GameRoot/DisplaySettings/Resolution"]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 60.0
+text = "分辨率"
+label_settings = SubResource("LabelSettings_j3338")
+
+[node name="FullScreen" type="Control" parent="GameRoot/DisplaySettings"]
+anchors_preset = 0
+offset_left = 223.0
+offset_top = 449.0
+offset_right = 263.0
+offset_bottom = 489.0
+
+[node name="CheckBox" type="CheckBox" parent="GameRoot/DisplaySettings/FullScreen"]
+layout_mode = 0
+offset_top = 12.0
+offset_right = 88.0
+offset_bottom = 129.0
+theme = ExtResource("7_1w8le")
+button_pressed = true
+
+[node name="Label" type="Label" parent="GameRoot/DisplaySettings/FullScreen"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 40.0
+offset_right = 293.0
+offset_bottom = 100.0
+text = "全屏"
+label_settings = SubResource("LabelSettings_j3338")
+
+[node name="TermButton" type="TextureButton" parent="GameRoot"]
+offset_left = 263.0
+offset_top = 626.0
+offset_right = 813.0
+offset_bottom = 826.0
+texture_normal = ExtResource("10_xbpkj")
+script = ExtResource("5_4og2s")
+
+[node name="OperationRoot" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="OperationHint" type="TextureRect" parent="OperationRoot"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("7_n3qug")
+
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Operation" to="." method="_on_operation_pressed"]
+[connection signal="pressed" from="Game" to="." method="_on_game_pressed"]
+[connection signal="value_changed" from="GameRoot/VolumeSettings/MainVolume/MainSlider" to="." method="_on_main_slider_value_changed"]
+[connection signal="value_changed" from="GameRoot/VolumeSettings/MusicVolume/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="GameRoot/VolumeSettings/SoundVolume/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="item_selected" from="GameRoot/DisplaySettings/Language/OptionButton" to="." method="_on_language_option_button_item_selected"]
+[connection signal="item_selected" from="GameRoot/DisplaySettings/Resolution/OptionButton" to="." method="_on_resolution_option_button_item_selected"]
+[connection signal="pressed" from="GameRoot/DisplaySettings/FullScreen/CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="pressed" from="GameRoot/TermButton" to="." method="_on_term_button_pressed"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://cylhwc30dmd73"]
+
+[ext_resource type="Script" path="res://src/scenes/cards/cards/card_sample.gd" id="1_iba7f"]
+[ext_resource type="Theme" uid="uid://cdouue57xl5jo" path="res://src/resources/global/themes/new_theme.tres" id="2_pecpb"]
+[ext_resource type="Texture2D" uid="uid://c23uu003cmstt" path="res://src/resources/cards/cards_imgs/1.png" id="3_bnii7"]
+[ext_resource type="Shader" uid="uid://bqwb863df8yv0" path="res://src/resources/cards/shader/dummy_outline.tres" id="4_fnaqx"]
+[ext_resource type="FontFile" uid="uid://c1002r6e15b28" path="res://src/resources/global/fonts/HanYiZhongYuanJian-1.ttf" id="11_2yleu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ih1d8"]
+shader = ExtResource("4_fnaqx")
+shader_parameter/OutlineColor = null
+shader_parameter/Width = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_egr46"]
+font = ExtResource("11_2yleu")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qxb5o"]
+font = ExtResource("11_2yleu")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CardSample" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_iba7f")
+
+[node name="CardTetris" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ih1d8")
+layout_mode = 0
+offset_right = 432.0
+offset_bottom = 306.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CardTemp" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -131.7
+offset_top = -193.5
+offset_right = 127.3
+offset_bottom = 116.5
+pivot_offset = Vector2(129, 155)
+theme = ExtResource("2_pecpb")
+
+[node name="light_left" type="TextureRect" parent="CardTemp"]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 46.0
+mouse_filter = 2
+
+[node name="light_right" type="TextureRect" parent="CardTemp"]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 46.0
+mouse_filter = 2
+
+[node name="card_back" type="TextureRect" parent="CardTemp"]
+layout_mode = 0
+offset_left = 21.7
+offset_top = 22.5
+offset_right = 223.7
+offset_bottom = 326.5
+mouse_filter = 2
+texture = ExtResource("3_bnii7")
+
+[node name="card_img" type="TextureRect" parent="CardTemp"]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 46.0
+mouse_filter = 2
+
+[node name="icon_left" type="TextureRect" parent="CardTemp"]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 46.0
+mouse_filter = 2
+
+[node name="icon_right" type="TextureRect" parent="CardTemp"]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 46.0
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="CardTemp"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 149.0
+offset_right = 188.0
+offset_bottom = 176.0
+text = "默认"
+label_settings = SubResource("LabelSettings_egr46")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="CardTemp"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.249
+anchor_top = 0.428
+anchor_right = 0.755
+anchor_bottom = 0.513
+offset_left = 2.509
+offset_top = 43.32
+offset_right = -15.545
+offset_bottom = 121.97
+theme = ExtResource("2_pecpb")
+text = "默认"
+label_settings = SubResource("LabelSettings_qxb5o")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq3qjsfl4vv8h"]
+
+[ext_resource type="Script" path="res://src/scenes/cards/card_builder/card_builder.gd" id="1_3hmio"]
+[ext_resource type="PackedScene" uid="uid://cylhwc30dmd73" path="res://src/scenes/cards/cards/card_sample.tscn" id="2_tekbi"]
+
+[node name="CardBuilder" type="Node"]
+script = ExtResource("1_3hmio")
+card_sample_packed = ExtResource("2_tekbi")

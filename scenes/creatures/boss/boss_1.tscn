@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://dok72tw4x8xo4"]
+
+[ext_resource type="Script" path="res://src/scenes/creatures/boss/boss_1.gd" id="1_7sbjg"]
+[ext_resource type="PackedScene" uid="uid://633om3nc53ur" path="res://src/scenes/creatures/enemy_parts/part_sample.tscn" id="1_g8g7l"]
+[ext_resource type="Texture2D" uid="uid://bdhfgatt57p1r" path="res://src/resources/enemies/level1/level1_boss_normal.png" id="2_8lhbm"]
+[ext_resource type="Texture2D" uid="uid://c8m6e0ofequhc" path="res://src/resources/enemies/level1/level1-3-1.png" id="5_grw6t"]
+[ext_resource type="Texture2D" uid="uid://bovcx58txx6ke" path="res://src/resources/enemies/level1/level1-3-2.png" id="6_n6xhh"]
+[ext_resource type="Texture2D" uid="uid://djeir3dnmnciu" path="res://src/resources/enemies/level1/level1-2-1.png" id="8_fqlr0"]
+[ext_resource type="Texture2D" uid="uid://2q8s61fnm3f8" path="res://src/resources/enemies/level1/level1-2-2.png" id="9_t6i8d"]
+[ext_resource type="Texture2D" uid="uid://bo52102r2sbwt" path="res://src/resources/enemies/level1/level1-1-1.png" id="11_ngrtg"]
+[ext_resource type="Texture2D" uid="uid://71tja4wf4lfw" path="res://src/resources/enemies/level1/level1-1-2.png" id="12_odk6y"]
+
+[node name="Boss1" type="Node2D"]
+script = ExtResource("1_7sbjg")
+
+[node name="LazyViru" parent="." instance=ExtResource("1_g8g7l")]
+normal_img = ExtResource("2_8lhbm")
+angry_img = ExtResource("2_8lhbm")
+destroyed_img = ExtResource("2_8lhbm")
+part_name = "懒惰毒（本体）"
+part_mhp = 10
+part_id = "boss_1_main"
+is_main_part = true
+intention_offset = Vector2(375, 86)
+
+[node name="TextureRect" parent="LazyViru" index="0"]
+texture = ExtResource("2_8lhbm")
+
+[node name="HardNozzle" parent="." instance=ExtResource("1_g8g7l")]
+position = Vector2(437, 351)
+normal_img = ExtResource("5_grw6t")
+angry_img = ExtResource("5_grw6t")
+destroyed_img = ExtResource("6_n6xhh")
+part_name = "肿块"
+part_mhp = 4
+part_id = "boss_1_part1"
+intention_offset = Vector2(55, 179)
+
+[node name="TextureRect" parent="HardNozzle" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+texture = ExtResource("5_grw6t")
+
+[node name="SmileNozzle" parent="." instance=ExtResource("1_g8g7l")]
+position = Vector2(514, 42)
+normal_img = ExtResource("8_fqlr0")
+angry_img = ExtResource("8_fqlr0")
+destroyed_img = ExtResource("9_t6i8d")
+part_name = "笑脸"
+part_mhp = 4
+part_id = "boss_1_part2"
+intention_offset = Vector2(208, 0)
+
+[node name="TextureRect" parent="SmileNozzle" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+texture = ExtResource("8_fqlr0")
+
+[node name="HeartLump" parent="." instance=ExtResource("1_g8g7l")]
+position = Vector2(-13, 74)
+normal_img = ExtResource("11_ngrtg")
+angry_img = ExtResource("11_ngrtg")
+destroyed_img = ExtResource("12_odk6y")
+part_name = "心形"
+part_mhp = 4
+part_id = "boss_1_part3"
+intention_offset = Vector2(50, 0)
+
+[node name="TextureRect" parent="HeartLump" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+texture = ExtResource("11_ngrtg")
+
+[editable path="LazyViru"]
+[editable path="HardNozzle"]
+[editable path="SmileNozzle"]
+[editable path="HeartLump"]

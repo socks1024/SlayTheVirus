@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://b80sgmxkbjsmb"]
+
+[ext_resource type="Script" path="res://src/scenes/creatures/stat_bar/stat_bar.gd" id="1_vqjdm"]
+[ext_resource type="Texture2D" uid="uid://dcjkupqkfua7x" path="res://src/resources/main/source 1.0/health_bar.png" id="2_1kqe8"]
+[ext_resource type="Texture2D" uid="uid://d4d6vs81wnpoh" path="res://src/resources/statbar/level1-1.png" id="2_855c1"]
+[ext_resource type="Texture2D" uid="uid://fuwj6887vtsy" path="res://src/resources/statbar/level1-2.png" id="3_3inol"]
+[ext_resource type="FontFile" uid="uid://c1002r6e15b28" path="res://src/resources/global/fonts/HanYiZhongYuanJian-1.ttf" id="4_k18y7"]
+[ext_resource type="Texture2D" uid="uid://bq36ajtaqd640" path="res://src/resources/statbar/格挡.png" id="5_1s7iu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_crura"]
+font = ExtResource("4_k18y7")
+font_size = 60
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fgeoa"]
+font = ExtResource("4_k18y7")
+font_size = 48
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vp5gl"]
+font = ExtResource("4_k18y7")
+font_size = 120
+outline_size = 36
+outline_color = Color(0, 0, 0, 1)
+
+[node name="StatBar" type="Node2D"]
+script = ExtResource("1_vqjdm")
+
+[node name="BackGroundFront" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("2_855c1")
+centered = false
+
+[node name="BackGroundBack" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("3_3inol")
+centered = false
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+z_as_relative = false
+offset_left = 68.0
+offset_top = 132.0
+offset_right = 806.0
+offset_bottom = 168.0
+value = 100.0
+texture_progress = ExtResource("2_1kqe8")
+
+[node name="HealthNum" type="Label" parent="HealthBar"]
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = 307.0
+offset_top = -11.0
+offset_right = 465.0
+offset_bottom = 56.0
+text = "25/25"
+label_settings = SubResource("LabelSettings_crura")
+
+[node name="BuffRoot" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(443, 59)
+
+[node name="Name" type="Label" parent="."]
+z_index = 2
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 176.0
+offset_bottom = 108.0
+text = "默认"
+label_settings = SubResource("LabelSettings_fgeoa")
+vertical_alignment = 1
+
+[node name="BlockTexture" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(819, 147)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_1s7iu")
+
+[node name="BlockNum" type="Label" parent="BlockTexture"]
+offset_left = -70.0
+offset_top = -56.0
+offset_right = 70.0
+offset_bottom = 70.0
+text = "2
+"
+label_settings = SubResource("LabelSettings_vp5gl")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,131 @@
+[gd_scene load_steps=12 format=3 uid="uid://by0ejjdkwl2m7"]
+
+[ext_resource type="Script" path="res://src/scenes/UI/screens/select_deck_screen/select_deck_screen.gd" id="1_s5386"]
+[ext_resource type="Texture2D" uid="uid://damt1is186d8t" path="res://src/resources/main/button/select_deck_1b.png" id="2_7ywfs"]
+[ext_resource type="Texture2D" uid="uid://bserv2k40epal" path="res://src/resources/zh-CN/11.png" id="3_sjlau"]
+[ext_resource type="Texture2D" uid="uid://bxou2fr6f4j2" path="res://src/resources/main/button/select_deck_2b.png" id="4_851e2"]
+[ext_resource type="Texture2D" uid="uid://c6p1rv26olyyr" path="res://src/resources/zh-CN/12.png" id="5_nrq1c"]
+[ext_resource type="Texture2D" uid="uid://ca2jkg3d3pb4e" path="res://src/resources/GUI/buttons&others/scroller.png" id="6_mqmcc"]
+[ext_resource type="Texture2D" uid="uid://cpsu0oqbdr4wn" path="res://src/resources/GUI/buttons&others/下滑键.png" id="6_nw7bi"]
+[ext_resource type="Texture2D" uid="uid://g8yp3yuqmvkj" path="res://src/resources/zh-CN/9.png" id="7_8rl4t"]
+[ext_resource type="Script" path="res://src/scripts/GUI/button.gd" id="7_nvmya"]
+[ext_resource type="Script" path="res://src/scenes/UI/screens/select_deck_screen/scroller.gd" id="8_csqeh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hi2ie"]
+
+[node name="SelectDeckScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s5386")
+
+[node name="Frame" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="1b" type="TextureRect" parent="Frame"]
+z_index = -3
+layout_mode = 0
+offset_right = 1469.0
+offset_bottom = 1080.0
+texture = ExtResource("2_7ywfs")
+
+[node name="1" type="TextureRect" parent="Frame"]
+z_index = 1
+layout_mode = 0
+offset_right = 1433.0
+offset_bottom = 1080.0
+texture = ExtResource("3_sjlau")
+
+[node name="2b" type="TextureRect" parent="Frame"]
+z_index = -1
+layout_mode = 0
+offset_left = 1433.0
+offset_right = 1918.0
+offset_bottom = 1080.0
+texture = ExtResource("4_851e2")
+
+[node name="2" type="TextureRect" parent="Frame"]
+z_index = 1
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("5_nrq1c")
+
+[node name="CardLibraryRoot" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="CardShowcase" type="Control" parent="CardLibraryRoot"]
+z_index = -2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CardShowcase2" type="Control" parent="CardLibraryRoot"]
+z_index = -2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 960.0
+offset_right = 1000.0
+offset_bottom = 40.0
+
+[node name="PageUpButton" type="TextureButton" parent="CardLibraryRoot"]
+layout_mode = 0
+offset_left = 1277.0
+offset_top = 636.0
+offset_right = 1401.0
+offset_bottom = 710.0
+rotation = -1.5708
+texture_normal = ExtResource("6_nw7bi")
+script = ExtResource("7_nvmya")
+
+[node name="PageDownButton" type="TextureButton" parent="CardLibraryRoot"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 499.0
+offset_right = 294.0
+offset_bottom = 573.0
+rotation = 1.5708
+texture_normal = ExtResource("6_nw7bi")
+script = ExtResource("7_nvmya")
+
+[node name="DeckRoot" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="ReturnButton" type="TextureButton" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = -31.0
+offset_right = 440.0
+offset_bottom = 220.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("7_8rl4t")
+script = ExtResource("7_nvmya")
+
+[node name="VSlider" type="VSlider" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = 1918.0
+offset_top = 1080.0
+offset_right = 1987.0
+offset_bottom = 1995.0
+rotation = 3.14159
+theme_override_icons/grabber = ExtResource("6_mqmcc")
+theme_override_icons/grabber_highlight = ExtResource("6_mqmcc")
+theme_override_icons/grabber_disabled = ExtResource("6_mqmcc")
+theme_override_styles/slider = SubResource("StyleBoxTexture_hi2ie")
+max_value = 1.0
+step = 0.01
+script = ExtResource("8_csqeh")
+
+[connection signal="pressed" from="CardLibraryRoot/PageUpButton" to="." method="_on_page_up_button_pressed"]
+[connection signal="pressed" from="CardLibraryRoot/PageDownButton" to="." method="_on_page_down_button_pressed"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="value_changed" from="VSlider" to="." method="_on_scroller_scrolling"]
