@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://cygxyohr4mval"]
+
+[ext_resource type="Script" path="res://src/scenes/creatures/boss/boss2/boss_2.gd" id="1_gx1kt"]
+[ext_resource type="PackedScene" uid="uid://633om3nc53ur" path="res://src/scenes/creatures/enemy_parts/part_sample.tscn" id="2_a6woi"]
+[ext_resource type="Texture2D" uid="uid://5h6d5fbijqg6" path="res://src/resources/enemies/level2/level2_body_normal.png" id="3_as04m"]
+[ext_resource type="Texture2D" uid="uid://dfgcdeq304v3v" path="res://src/resources/enemies/level2/level2_body_angry.png" id="4_l6yho"]
+[ext_resource type="Texture2D" uid="uid://dwppbo04pqfrt" path="res://src/resources/enemies/level2/level2-2-1.png" id="6_mpjwd"]
+[ext_resource type="Texture2D" uid="uid://djeir3dnmnciu" path="res://src/resources/enemies/level1/level1-2-1.png" id="6_qg0ee"]
+[ext_resource type="Texture2D" uid="uid://bdxp7qavtys7s" path="res://src/resources/enemies/level2/level2-2-2.png" id="7_henxn"]
+[ext_resource type="Texture2D" uid="uid://2q8s61fnm3f8" path="res://src/resources/enemies/level1/level1-2-2.png" id="7_x4xgu"]
+[ext_resource type="Texture2D" uid="uid://dd0uyqaw40gy2" path="res://src/resources/enemies/level2/level2-4-1.png" id="10_nyo65"]
+
+[node name="Boss2" type="Node2D"]
+z_index = -1
+script = ExtResource("1_gx1kt")
+
+[node name="PokeViru" parent="." instance=ExtResource("2_a6woi")]
+normal_img = ExtResource("3_as04m")
+angry_img = ExtResource("4_l6yho")
+destroyed_img = ExtResource("4_l6yho")
+part_name = "懒惰毒（本体）"
+part_mhp = 16
+part_id = "boss_1_main"
+is_main_part = true
+intention_offset = Vector2(400, 100)
+
+[node name="TextureRect" parent="PokeViru" index="0"]
+offset_right = 646.0
+offset_bottom = 668.0
+texture = ExtResource("3_as04m")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ConeHead" parent="." instance=ExtResource("2_a6woi")]
+position = Vector2(437, 351)
+normal_img = ExtResource("6_mpjwd")
+angry_img = ExtResource("6_mpjwd")
+destroyed_img = ExtResource("7_henxn")
+part_name = "肿块"
+part_mhp = 4
+part_id = "boss_1_part1"
+intention_offset = Vector2(100, 170)
+
+[node name="TextureRect" parent="ConeHead" index="0"]
+offset_left = -492.0
+offset_top = -335.0
+offset_right = -225.0
+offset_bottom = -72.0
+texture = ExtResource("6_mpjwd")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Tentacle" parent="." instance=ExtResource("2_a6woi")]
+position = Vector2(514, 42)
+normal_img = ExtResource("6_qg0ee")
+angry_img = ExtResource("6_qg0ee")
+destroyed_img = ExtResource("7_x4xgu")
+part_name = "笑脸"
+part_mhp = 4
+part_id = "boss_1_part2"
+intention_offset = Vector2(208, 0)
+
+[node name="TextureRect" parent="Tentacle" index="0"]
+offset_left = -145.0
+offset_top = 276.0
+offset_right = 499.0
+offset_bottom = 937.0
+texture = ExtResource("10_nyo65")
+
+[editable path="PokeViru"]
+[editable path="ConeHead"]
+[editable path="Tentacle"]

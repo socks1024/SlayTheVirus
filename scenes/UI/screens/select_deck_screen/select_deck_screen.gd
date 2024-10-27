@@ -25,6 +25,10 @@ func exit():
 		for i in editor.count:
 			main.master_deck.append(editor.card_id)
 	
+	
+	while(main.master_deck.size() < 13):
+		main.master_deck.append("RESERVIST")
+	
 	for editor in deck_root.get_children():
 		editor.queue_free()
 		editor_amount = 0
@@ -50,14 +54,13 @@ var showcase_size = showcase_row_x * showcase_row_y
 
 var showed_card_number = 0#左上角的展示牌
 
-
 var total_unlocked_card_list = [1,2,3,4,5,6,7,8,9,10,11,12,13,17,35]
 var boss_1_unlocked_card_list = [15,20,21]
 var boss_2_unlocked_card_list = [16,18,31]
 var boss_3_unlocked_card_list = [27,28,36]
-var boss_4_unlocked_card_list = [24,25,33]
+var boss_4_unlocked_card_list = [24,25,30]
 var boss_5_unlocked_card_list = [14,22,23]
-var boss_6_unlocked_card_list = [19,30,32]
+var boss_6_unlocked_card_list = [19,33,32]
 var boss_7_unlocked_card_list = [26,29,34]
 var boss_8_unlocked_card_list = [37,38,39,40,41,42]
 
@@ -103,66 +106,24 @@ func set_card_showcase():
 #var page_turning_time = 0.3
 
 func _on_page_up_button_pressed():
-	#main.play_sound(main.press_button)
 	
 	if showed_card_number + showcase_size < total_unlocked_card_list.size():
 		
 		showed_card_number += showcase_size
 		
-		#var t = get_tree().create_tween()
-		#
-		#t.tween_property(card_showcase,"global_position", \
-			#Vector2(( - (showcase_unit_x * 3)),0) \
-			#,page_turning_time)
-		
-		#t.finished.connect(
-			#func():set_card_showcase()
-		#)
-		#
-		#t.finished.connect(
-			#func():card_showcase.global_position.x = (showcase_unit_x * 3)
-		#)
-		#
-		#t.tween_property(card_showcase,"global_position", \
-			#Vector2(0,0) \
-			#,page_turning_time)
-		
-		#
-		#t.tween_property(card_showcase,"global_position", \
-			#Vector2(( + (showcase_unit_x * 3)),0) \
-			#,0.00001)
-		
-		
-		#card_showcase.global_position.x += (showcase_unit_x * 6)
-		
 		set_card_showcase()
 
 
 func _on_page_down_button_pressed():
-	#main.play_sound(main.press_button)
 	
 	if showed_card_number - showcase_size >= 0:
 		
 		showed_card_number -= showcase_size
 		
-		#var t = get_tree().create_tween()
-		#
-		#t.tween_property(card_showcase,"global_position", \
-			#Vector2(( + (showcase_unit_x * 3)),0) \
-			#,page_turning_time)
-		#
-		#t.tween_property(card_showcase,"global_position", \
-			#Vector2(( - (showcase_unit_x * 3)),0) \
-			#,0.00001)
-		
-		
-		#card_showcase.global_position.x += (showcase_unit_x * 6)
 		
 		set_card_showcase()
-		
-		#t.tween_property(card_showcase,"global_position", \
-			#Vector2(0,0) \
-			#,page_turning_time)
+
+
 
 #endregion
 
@@ -210,7 +171,6 @@ func _on_editor_cancelled():
 	
 	for i in deck_root.get_child_count():
 		deck_root.get_child(i).position = Vector2(editor_default_position.x,editor_default_position.y + (editor_space_between * i))
-
 
 
 func _on_scroller_scrolling(ratio):

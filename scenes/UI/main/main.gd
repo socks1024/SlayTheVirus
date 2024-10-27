@@ -7,6 +7,10 @@ extends Node
 func _ready():
 	var b = load_game()
 	
+	for i in choose_level_screen.levels_pass_condition.size():
+		if choose_level_screen.levels_pass_condition[i]:
+			select_deck_screen.unlock_card_list(i+1)
+	
 	battle_screen.level_unlock.connect(choose_level_screen._on_level_unlock)
 	battle_screen.level_try.connect(choose_level_screen._on_level_try)
 	battle_screen.level_pass.connect(choose_level_screen._on_level_pass)
@@ -22,6 +26,8 @@ func _ready():
 	
 	player.initialize()
 	battle_manager.player = player
+	battle_manager.trash_cards = select_deck_screen.boss_8_unlocked_card_list
+	
 	
 	change_music(main_opening)
 
@@ -65,7 +71,7 @@ func _notification(what):
 #region audio
 
 @onready var bgm_player = $BGMPlayer
-@onready var se_player = $SEPlayer
+#@onready var se_player = $SEPlayer
 
 #region bgm
 
@@ -90,6 +96,10 @@ var go_sound = preload("res://src/resources/audio/SFX/Attack3.ogg")
 var blow_sound = preload("res://src/resources/audio/SFX/Blow1.ogg")
 var cancel_sound = preload("res://src/resources/audio/SFX/Cancel1.ogg")
 var equip_sound = preload("res://src/resources/audio/SFX/Equip1.ogg")
+var defense_sound = preload("res://src/resources/audio/SFX/Parry.ogg")
+var shock_sound = preload("res://src/resources/audio/SFX/Shock2.ogg")
+var victory_sound = preload("res://src/resources/audio/SFX/Victory2.ogg")
+var heal_sound = preload("res://src/resources/audio/SFX/英雄恢复(hero_recover)_爱给网_aigei_com.mp3")
 
 #endregion
 
@@ -111,6 +121,9 @@ func _on_bgm_player_finished():
 
 
 func play_sound(sound):
+	var se_player = AudioStreamPlayer.new()
+	add_child(se_player)
+	se_player.finished.connect(se_player.queue_free)
 	se_player.stream = sound
 	se_player.play()
 

@@ -55,6 +55,7 @@ autoplay = true
 bus = &"BGM"
 
 [node name="SEPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 100
 bus = &"SFX"
 
 [connection signal="finished" from="BGMPlayer" to="." method="_on_bgm_player_finished"]

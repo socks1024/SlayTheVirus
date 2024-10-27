@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4ju6sbo263b8"]
+[gd_scene load_steps=15 format=3 uid="uid://c4ju6sbo263b8"]
 
 [ext_resource type="Script" path="res://src/scenes/UI/screens/settings_screen/settings_screen.gd" id="1_740b5"]
 [ext_resource type="Texture2D" uid="uid://dg06ilhgmdp3q" path="res://src/resources/GUI/levels/choose_level/back.png" id="2_isghn"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://4esd46jjvoum" path="res://src/resources/GUI/buttons&others/操作提示.png" id="7_n3qug"]
 [ext_resource type="FontFile" uid="uid://c1002r6e15b28" path="res://src/resources/global/fonts/HanYiZhongYuanJian-1.ttf" id="8_jacts"]
 [ext_resource type="Texture2D" uid="uid://fa5fti5u7agj" path="res://src/resources/intention&table/术语表-1.png" id="10_xbpkj"]
+[ext_resource type="LabelSettings" uid="uid://dfmhtfhjw36b" path="res://src/resources/global/fonts/Font_60_16.tres" id="12_qbpr6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vs01v"]
 font = ExtResource("8_jacts")
@@ -261,6 +262,7 @@ text = "全屏"
 label_settings = SubResource("LabelSettings_j3338")
 
 [node name="TermButton" type="TextureButton" parent="GameRoot"]
+layout_mode = 0
 offset_left = 263.0
 offset_top = 626.0
 offset_right = 813.0
@@ -281,6 +283,34 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("7_n3qug")
+
+[node name="Label" type="Label" parent="OperationRoot/OperationHint"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 612.0
+offset_right = 1190.0
+offset_bottom = 735.0
+text = "旋转卡牌
+（查看方块模式）"
+label_settings = ExtResource("12_qbpr6")
+
+[node name="Label2" type="Label" parent="OperationRoot/OperationHint"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 612.0
+offset_right = 205.0
+offset_bottom = 672.0
+text = "拖拽"
+label_settings = ExtResource("12_qbpr6")
+
+[node name="Label3" type="Label" parent="OperationRoot/OperationHint"]
+layout_mode = 0
+offset_left = 734.0
+offset_top = 346.0
+offset_right = 974.0
+offset_bottom = 406.0
+text = "快速出牌"
+label_settings = ExtResource("12_qbpr6")
 
 [connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="Operation" to="." method="_on_operation_pressed"]

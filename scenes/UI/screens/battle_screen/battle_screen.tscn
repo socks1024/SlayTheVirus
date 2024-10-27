@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cdumg8qqscvp3"]
+[gd_scene load_steps=34 format=3 uid="uid://cdumg8qqscvp3"]
 
 [ext_resource type="Script" path="res://src/scenes/UI/screens/battle_screen/battle_screen.gd" id="1_31562"]
 [ext_resource type="Texture2D" uid="uid://bdcvjv57wng3k" path="res://src/resources/board/back1.png" id="2_03ugn"]
@@ -7,19 +7,39 @@
 [ext_resource type="Script" path="res://src/scripts/battle/player/hand/hand.gd" id="2_yjupk"]
 [ext_resource type="Script" path="res://src/scripts/battle/battle_manager.gd" id="2_yrqar"]
 [ext_resource type="PackedScene" uid="uid://b80sgmxkbjsmb" path="res://src/scenes/creatures/stat_bar/stat_bar.tscn" id="4_qlbl8"]
+[ext_resource type="PackedScene" uid="uid://kcu2es42x2ep" path="res://src/scenes/creatures/buff/buff.tscn" id="4_uqav3"]
 [ext_resource type="Script" path="res://src/scripts/battle/player/board/board.gd" id="6_vx04r"]
 [ext_resource type="Texture2D" uid="uid://e2trdq2sd2tx" path="res://src/resources/GUI/go_button/idle_ps.png" id="7_ij8wv"]
 [ext_resource type="Texture2D" uid="uid://4fcwnrbyl1cn" path="res://src/resources/GUI/go_button/pressed_ps.png" id="8_6sgi8"]
 [ext_resource type="Script" path="res://src/scripts/battle/player/board/cell.gd" id="8_u4331"]
-[ext_resource type="PackedScene" uid="uid://dok72tw4x8xo4" path="res://src/scenes/creatures/boss/boss_1.tscn" id="9_q4vhq"]
+[ext_resource type="PackedScene" uid="uid://dok72tw4x8xo4" path="res://src/scenes/creatures/boss/boss1/boss_1.tscn" id="9_q4vhq"]
 [ext_resource type="Texture2D" uid="uid://ctr1rx4kih3pv" path="res://src/resources/GUI/go_button/hover_ps.png" id="9_t5ijy"]
 [ext_resource type="Texture2D" uid="uid://csx3gs2ioijer" path="res://src/resources/board/full_board.png" id="14_mwqqe"]
 [ext_resource type="Texture2D" uid="uid://b85wig8677pba" path="res://src/resources/board/未解锁块.png" id="15_0oopg"]
 [ext_resource type="Texture2D" uid="uid://bmfvlw406aapg" path="res://src/resources/GUI/battleUI/弃牌.png" id="15_4nmeo"]
 [ext_resource type="Script" path="res://src/scripts/GUI/button.gd" id="16_1o5ot"]
 [ext_resource type="Texture2D" uid="uid://bfw05fbtk8fpt" path="res://src/resources/GUI/battleUI/看牌.png" id="17_8ryth"]
+[ext_resource type="Texture2D" uid="uid://bgr2tj4jpxuyx" path="res://src/resources/GUI/battleUI/exhaustbutton.png" id="18_gc0at"]
 [ext_resource type="Texture2D" uid="uid://b5si2r478nixp" path="res://src/resources/GUI/battleUI/设置.png" id="18_rjc1l"]
 [ext_resource type="Texture2D" uid="uid://b2rcmtna04u82" path="res://src/resources/GUI/battleUI/返回.png" id="19_53qf0"]
+[ext_resource type="Texture2D" uid="uid://dkbnpqc6eku04" path="res://src/resources/intention&table/drawpile.png" id="22_dv2sp"]
+[ext_resource type="Script" path="res://src/scripts/GUI/card_window.gd" id="22_tsx7d"]
+[ext_resource type="Texture2D" uid="uid://cosbvy4ke41kt" path="res://src/resources/intention&table/pileback.png" id="23_53f4q"]
+[ext_resource type="Texture2D" uid="uid://cpsu0oqbdr4wn" path="res://src/resources/GUI/buttons&others/下滑键.png" id="24_tqygb"]
+[ext_resource type="Texture2D" uid="uid://b66w1v8k6e2f5" path="res://src/resources/intention&table/discard.png" id="26_43rcw"]
+[ext_resource type="Texture2D" uid="uid://g8yp3yuqmvkj" path="res://src/resources/zh-CN/9.png" id="26_gc765"]
+[ext_resource type="Script" path="res://src/scripts/GUI/choose_card_window.gd" id="26_ht3fk"]
+[ext_resource type="Texture2D" uid="uid://bu41xiv0es317" path="res://src/resources/intention&table/exhaustpile.png" id="27_3tae4"]
+[ext_resource type="Texture2D" uid="uid://bur2brkktvmp2" path="res://src/resources/intention&table/choosewindow.png" id="27_gi74a"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_mjye2"]
+device = -1
+pressed = true
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_kjywg"]
+events = [SubResource("InputEventKey_mjye2")]
 
 [node name="BattleScreen" type="Control"]
 layout_mode = 3
@@ -33,6 +53,7 @@ boss_1 = ExtResource("9_q4vhq")
 
 [node name="BattleManager" type="Node2D" parent="."]
 script = ExtResource("2_yrqar")
+buff_sample_packed = ExtResource("4_uqav3")
 
 [node name="PlayerCardManager" type="Node2D" parent="BattleManager"]
 script = ExtResource("2_15quh")
@@ -202,11 +223,12 @@ texture = ExtResource("2_n3xal")
 
 [node name="GoButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 709.0
-offset_top = 358.0
-offset_right = 1309.0
-offset_bottom = 858.0
+offset_left = 755.0
+offset_top = 410.0
+offset_right = 1155.0
+offset_bottom = 810.0
 scale = Vector2(0.7, 0.7)
+shortcut = SubResource("Shortcut_kjywg")
 texture_normal = ExtResource("7_ij8wv")
 texture_pressed = ExtResource("8_6sgi8")
 texture_hover = ExtResource("9_t5ijy")
@@ -221,6 +243,18 @@ scale = Vector2(2, 2)
 texture_normal = ExtResource("15_4nmeo")
 texture_pressed = ExtResource("15_4nmeo")
 texture_hover = ExtResource("15_4nmeo")
+script = ExtResource("16_1o5ot")
+
+[node name="ExhaustPile" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = 830.0
+offset_right = 1826.0
+offset_bottom = 880.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("18_gc0at")
+texture_pressed = ExtResource("18_gc0at")
+texture_hover = ExtResource("18_gc0at")
 script = ExtResource("16_1o5ot")
 
 [node name="DrawPile" type="TextureButton" parent="."]
@@ -266,9 +300,269 @@ offset_top = 508.0
 offset_right = 1748.0
 offset_bottom = 508.0
 
+[node name="DrawWindow" type="Control" parent="."]
+visible = false
+z_index = 9
+anchors_preset = 0
+offset_left = 321.0
+offset_top = 16.0
+offset_right = 361.0
+offset_bottom = 56.0
+script = ExtResource("22_tsx7d")
+
+[node name="CardShowcase" type="Control" parent="DrawWindow"]
+anchors_preset = 0
+offset_left = 143.0
+offset_top = 290.0
+offset_right = 183.0
+offset_bottom = 330.0
+
+[node name="Front" type="TextureRect" parent="DrawWindow"]
+z_index = 1
+layout_mode = 0
+offset_right = 1246.0
+offset_bottom = 977.0
+texture = ExtResource("22_dv2sp")
+
+[node name="Back" type="TextureRect" parent="DrawWindow"]
+z_index = -1
+layout_mode = 0
+offset_right = 1246.0
+offset_bottom = 977.0
+texture = ExtResource("23_53f4q")
+
+[node name="PageUpButton" type="TextureButton" parent="DrawWindow"]
+layout_mode = 0
+offset_left = 1041.0
+offset_top = 537.0
+offset_right = 1165.0
+offset_bottom = 611.0
+rotation = -1.5708
+texture_normal = ExtResource("24_tqygb")
+script = ExtResource("16_1o5ot")
+
+[node name="PageDownButton" type="TextureButton" parent="DrawWindow"]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 411.0
+offset_right = 329.0
+offset_bottom = 485.0
+rotation = 1.5708
+texture_normal = ExtResource("24_tqygb")
+script = ExtResource("16_1o5ot")
+
+[node name="ReturnButton" type="TextureButton" parent="DrawWindow"]
+z_index = 2
+layout_mode = 0
+offset_left = 36.0
+offset_top = 65.0
+offset_right = 507.0
+offset_bottom = 285.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("26_gc765")
+script = ExtResource("16_1o5ot")
+
+[node name="DiscardWindow" type="Control" parent="."]
+visible = false
+z_index = 9
+anchors_preset = 0
+offset_left = 321.0
+offset_top = 16.0
+offset_right = 361.0
+offset_bottom = 56.0
+script = ExtResource("22_tsx7d")
+
+[node name="CardShowcase" type="Control" parent="DiscardWindow"]
+anchors_preset = 0
+offset_left = 140.0
+offset_top = 282.0
+offset_right = 180.0
+offset_bottom = 322.0
+
+[node name="Front" type="TextureRect" parent="DiscardWindow"]
+z_index = 1
+layout_mode = 0
+offset_right = 1246.0
+offset_bottom = 977.0
+texture = ExtResource("26_43rcw")
+
+[node name="Back" type="TextureRect" parent="DiscardWindow"]
+z_index = -1
+layout_mode = 0
+offset_right = 1246.0
+offset_bottom = 977.0
+texture = ExtResource("23_53f4q")
+
+[node name="PageUpButton" type="TextureButton" parent="DiscardWindow"]
+layout_mode = 0
+offset_left = 1041.0
+offset_top = 537.0
+offset_right = 1165.0
+offset_bottom = 611.0
+rotation = -1.5708
+texture_normal = ExtResource("24_tqygb")
+script = ExtResource("16_1o5ot")
+
+[node name="PageDownButton" type="TextureButton" parent="DiscardWindow"]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 411.0
+offset_right = 329.0
+offset_bottom = 485.0
+rotation = 1.5708
+texture_normal = ExtResource("24_tqygb")
+script = ExtResource("16_1o5ot")
+
+[node name="ReturnButton" type="TextureButton" parent="DiscardWindow"]
+z_index = 2
+layout_mode = 0
+offset_left = 36.0
+offset_top = 74.0
+offset_right = 507.0
+offset_bottom = 294.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("26_gc765")
+script = ExtResource("16_1o5ot")
+
+[node name="ExhaustWindow" type="Control" parent="."]
+visible = false
+z_index = 9
+anchors_preset = 0
+offset_left = 321.0
+offset_top = 16.0
+offset_right = 361.0
+offset_bottom = 56.0
+script = ExtResource("22_tsx7d")
+
+[node name="CardShowcase" type="Control" parent="ExhaustWindow"]
+anchors_preset = 0
+offset_left = 140.0
+offset_top = 282.0
+offset_right = 180.0
+offset_bottom = 322.0
+
+[node name="Front" type="TextureRect" parent="ExhaustWindow"]
+z_index = 1
+layout_mode = 0
+offset_right = 1246.0
+offset_bottom = 977.0
+texture = ExtResource("27_3tae4")
+
+[node name="Back" type="TextureRect" parent="ExhaustWindow"]
+z_index = -1
+layout_mode = 0
+offset_right = 1246.0
+offset_bottom = 977.0
+texture = ExtResource("23_53f4q")
+
+[node name="PageUpButton" type="TextureButton" parent="ExhaustWindow"]
+layout_mode = 0
+offset_left = 1041.0
+offset_top = 537.0
+offset_right = 1165.0
+offset_bottom = 611.0
+rotation = -1.5708
+texture_normal = ExtResource("24_tqygb")
+script = ExtResource("16_1o5ot")
+
+[node name="PageDownButton" type="TextureButton" parent="ExhaustWindow"]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 411.0
+offset_right = 329.0
+offset_bottom = 485.0
+rotation = 1.5708
+texture_normal = ExtResource("24_tqygb")
+script = ExtResource("16_1o5ot")
+
+[node name="ReturnButton" type="TextureButton" parent="ExhaustWindow"]
+z_index = 2
+layout_mode = 0
+offset_left = 35.0
+offset_top = 101.0
+offset_right = 506.0
+offset_bottom = 321.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("26_gc765")
+script = ExtResource("16_1o5ot")
+
+[node name="ChooseCardWindow" type="Control" parent="."]
+visible = false
+z_index = 9
+anchors_preset = 0
+offset_left = 321.0
+offset_top = 16.0
+offset_right = 361.0
+offset_bottom = 56.0
+script = ExtResource("26_ht3fk")
+
+[node name="CardShowcase" type="Control" parent="ChooseCardWindow"]
+anchors_preset = 0
+offset_left = 140.0
+offset_top = 282.0
+offset_right = 180.0
+offset_bottom = 322.0
+
+[node name="Front" type="TextureRect" parent="ChooseCardWindow"]
+z_index = 1
+layout_mode = 0
+offset_right = 1246.0
+offset_bottom = 977.0
+mouse_filter = 2
+texture = ExtResource("27_gi74a")
+
+[node name="Back" type="TextureRect" parent="ChooseCardWindow"]
+z_index = -1
+layout_mode = 0
+offset_right = 1246.0
+offset_bottom = 977.0
+mouse_filter = 2
+texture = ExtResource("23_53f4q")
+
+[node name="PageUpButton" type="TextureButton" parent="ChooseCardWindow"]
+layout_mode = 0
+offset_left = 1041.0
+offset_top = 537.0
+offset_right = 1165.0
+offset_bottom = 611.0
+rotation = -1.5708
+texture_normal = ExtResource("24_tqygb")
+script = ExtResource("16_1o5ot")
+
+[node name="PageDownButton" type="TextureButton" parent="ChooseCardWindow"]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 411.0
+offset_right = 329.0
+offset_bottom = 485.0
+rotation = 1.5708
+texture_normal = ExtResource("24_tqygb")
+script = ExtResource("16_1o5ot")
+
+[node name="WinOrLose" type="TextureRect" parent="."]
+visible = false
+z_index = 10
+layout_mode = 0
+offset_left = 284.0
+offset_top = 221.0
+offset_right = 1435.0
+offset_bottom = 855.0
+
 [connection signal="battle_end" from="." to="." method="_on_battle_end"]
 [connection signal="pressed" from="GoButton" to="." method="_on_go_button_pressed"]
 [connection signal="pressed" from="DiscardPile" to="." method="_on_discard_pile_pressed"]
+[connection signal="pressed" from="ExhaustPile" to="." method="_on_exhaust_pile_pressed"]
 [connection signal="pressed" from="DrawPile" to="." method="_on_draw_pile_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="DrawWindow/PageUpButton" to="DrawWindow" method="_on_page_up_button_pressed"]
+[connection signal="pressed" from="DrawWindow/PageDownButton" to="DrawWindow" method="_on_page_down_button_pressed"]
+[connection signal="pressed" from="DrawWindow/ReturnButton" to="DrawWindow" method="_on_return_button_pressed"]
+[connection signal="pressed" from="DiscardWindow/PageUpButton" to="DiscardWindow" method="_on_page_up_button_pressed"]
+[connection signal="pressed" from="DiscardWindow/PageDownButton" to="DiscardWindow" method="_on_page_down_button_pressed"]
+[connection signal="pressed" from="DiscardWindow/ReturnButton" to="DiscardWindow" method="_on_return_button_pressed"]
+[connection signal="pressed" from="ExhaustWindow/PageUpButton" to="ExhaustWindow" method="_on_page_up_button_pressed"]
+[connection signal="pressed" from="ExhaustWindow/PageDownButton" to="ExhaustWindow" method="_on_page_down_button_pressed"]
+[connection signal="pressed" from="ExhaustWindow/ReturnButton" to="ExhaustWindow" method="_on_return_button_pressed"]
+[connection signal="pressed" from="ChooseCardWindow/PageUpButton" to="ChooseCardWindow" method="_on_page_up_button_pressed"]
+[connection signal="pressed" from="ChooseCardWindow/PageDownButton" to="ChooseCardWindow" method="_on_page_down_button_pressed"]

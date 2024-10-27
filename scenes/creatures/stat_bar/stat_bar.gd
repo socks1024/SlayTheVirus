@@ -58,7 +58,7 @@ func refresh_block():
 		$BlockTexture.show()
 	elif block_value <= 0:
 		$BlockTexture.hide()
-	$BlockTexture/BlockNum.text = str(block_value)
+	$BlockTexture/BlockNum.text = str(block_value) 
 
 #endregion
 
@@ -69,6 +69,8 @@ func refresh_block():
 var buff_count = 0
 
 func refresh_buffs():
+	buff_count = 0
+	
 	for b in $BuffRoot.get_children():
 		remove_child(b)
 	

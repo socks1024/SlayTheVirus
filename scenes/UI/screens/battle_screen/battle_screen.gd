@@ -10,41 +10,55 @@ var index = 1
 
 func enter():
 	super()
-	initialize_battle()
+	if !main.in_battle:
+		hide_all_card_window()
+		initialize_battle()
+		main.in_battle = true
+	
+	main.change_music(music)
 
 func exit():
 	super()
 	main.change_music(main.main_opening)
 
+var music
+
 func initialize_battle():
+	
 	
 	var boss:Boss
 	match index:
 		1:
 			boss = boss_1.instantiate()
-			main.change_music(main.battle_1_opening)
+			music = main.battle_1_opening
 		2:
 			boss = boss_1.instantiate()
 			#boss = boss_2.instantiate()
-			main.change_music(main.battle_1_opening)
+			music = main.battle_1_opening
 		3:
-			boss = boss_3.instantiate()
-			main.change_music(main.battle_2)
+			boss = boss_1.instantiate()
+			#boss = boss_3.instantiate()
+			music = main.battle_2
 		4:
-			boss = boss_4.instantiate()
-			main.change_music(main.battle_2)
+			boss = boss_1.instantiate()
+			#boss = boss_4.instantiate()
+			music = main.battle_2
 		5:
-			boss = boss_5.instantiate()
-			main.change_music(main.battle_3)
+			boss = boss_1.instantiate()
+			#boss = boss_5.instantiate()
+			music = main.battle_3
 		6:
-			boss = boss_6.instantiate()
-			main.change_music(main.battle_3)
+			boss = boss_1.instantiate()
+			#boss = boss_6.instantiate()
+			music = main.battle_3
 		7:
-			boss = boss_7.instantiate()
-			main.change_music(main.battle_4)
+			boss = boss_1.instantiate()
+			#boss = boss_7.instantiate()
+			music = main.battle_4
 		8:
-			boss = boss_8.instantiate()
-			main.change_music(main.battle_5_opening)
+			boss = boss_1.instantiate()
+			#boss = boss_8.instantiate()
+			music = main.battle_5_opening
 	
 	for b in $BattleManager/MonsterManager.get_children():
 		b.queue_free()
@@ -53,7 +67,7 @@ func initialize_battle():
 	turn_start.connect(boss._on_turn_start)
 	enemy_parts_act.connect(boss.boss_act)
 	boss.all_intentions_played.connect(turn_end.emit)
-	turn_end.connect(turn_start.emit)
+	turn_end.connect(_on_turn_end)
 	
 	$BattleManager/PlayerCardManager.connect_battle_signal()
 	
@@ -61,14 +75,12 @@ func initialize_battle():
 	enemy_stat_bar.connect_creature(boss.main_part)
 	
 	
-	battle_manager
-	
-	
+	#battle_manager
+	turn_end.connect(battle_manager.boss.buff_act_on_turn_end)
+	turn_end.connect(battle_manager.player.buff_act_on_turn_end)
 	
 	battle_start.emit()
 	turn_start.emit()
-
-#region boss
 
 signal level_unlock(index:int)
 signal level_try(index:int)
@@ -98,6 +110,9 @@ var boss_7_background:= preload("res://src/resources/board/back1.png")
 var boss_8_background:= preload("res://src/resources/board/back1.png")
 var boss_9_background:= preload("res://src/resources/board/back1.png")
 
+var win_texture:= preload("res://src/resources/intention&table/win.png")
+var lose_texture:= preload("res://src/resources/intention&table/lose.png")
+
 #endregion
 
 #region buttons
@@ -117,12 +132,26 @@ func _on_go_button_pressed():
 	player_play_card.emit()
 
 
+#func _input(event):
+	#if self.visible && event.is_action_pressed("Play Cards"):
+		#$GoButton.button_pressed = true
+	#if self.visible && event.is_action_released("Play Cards"):
+		#$GoButton.button_pressed = false
+
+
 func _on_draw_pile_pressed():
-	pass
+	hide_all_card_window()
+	set_card_window(main.player.draw_pile,$DrawWindow)
 
 
 func _on_discard_pile_pressed():
-	pass
+	hide_all_card_window()
+	set_card_window(main.player.discard,$DiscardWindow)
+
+
+func _on_exhaust_pile_pressed():
+	hide_all_card_window()
+	set_card_window(main.player.exhausted_pile,$ExhaustWindow)
 
 #endregion
 
@@ -136,12 +165,24 @@ signal player_play_card
 signal enemy_parts_act
 signal turn_end
 
+func _on_turn_end():
+	get_tree().create_timer(0.5).timeout.connect(turn_start.emit)
+
 func _on_battle_end(win:bool):
 	if win:
 		level_pass.emit(index)
 		level_unlock.emit(index + 1)
-	#结算画面
-	main.switch_screen(main.choose_level_screen)
+		$WinOrLose.texture = win_texture
+		main.play_sound(main.victory_sound)
+	else:
+		$WinOrLose.texture = lose_texture
+		main.play_sound(main.shock_sound)
+	
+	$WinOrLose.show()
+	
+	var timer = get_tree().create_timer(4)
+	timer.timeout.connect($WinOrLose.hide)
+	timer.timeout.connect(main.switch_screen.bind(main.choose_level_screen))
 
 #endregion
 
@@ -155,5 +196,21 @@ func show_board_card(card):
 		var c = main.get_card(card.id)
 		$ShowedBoardCard.add_child(c)
 		c.card_state_machine.switch_to("state_in_deck_showed_id",c)
+
+
+func set_card_window(pile:CardPile,window:CardWindow):
+	window.pile = pile
+	window.show_card_window()
+
+func hide_all_card_window():
+	$DrawWindow.hide_card_window()
+	$DiscardWindow.hide_card_window()
+	$ExhaustWindow.hide_card_window()
+	$ChooseCardWindow.hide_card_window()
+
+func choose_card_move_pile(from_pile:CardPile,to_pile:CardPile):
+	$ChooseCardWindow.pile = from_pile
+	$ChooseCardWindow.to_pile = to_pile
+	$ChooseCardWindow.show_card_window()
 
 #endregion

@@ -85,6 +85,7 @@ mouse_filter = 2
 texture = ExtResource("3_ye3fc")
 
 [node name="Label" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 220.0
 offset_top = 231.0
 offset_right = 508.0
@@ -93,6 +94,7 @@ text = "敌人将要发动攻击"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label2" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 220.0
 offset_top = 377.0
 offset_right = 508.0
@@ -101,6 +103,7 @@ text = "敌人将要获得格挡"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label3" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 220.0
 offset_top = 538.0
 offset_right = 508.0
@@ -109,6 +112,7 @@ text = "敌人将要获得增益"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label4" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 220.0
 offset_top = 684.0
 offset_right = 508.0
@@ -117,6 +121,7 @@ text = "敌人将要造成减益"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label5" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 220.0
 offset_top = 813.0
 offset_right = 508.0
@@ -126,6 +131,7 @@ text = "敌人将要进行
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label6" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 686.0
 offset_top = 231.0
 offset_right = 974.0
@@ -135,6 +141,7 @@ text = "被箭头指向的牌
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label7" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 686.0
 offset_top = 398.0
 offset_right = 974.0
@@ -144,6 +151,7 @@ text = "被箭头指向的牌
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label8" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 686.0
 offset_top = 558.0
 offset_right = 974.0
@@ -153,6 +161,7 @@ text = "箭头指向牌时，
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label9" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 686.0
 offset_top = 721.0
 offset_right = 1082.0
@@ -162,6 +171,7 @@ text = "箭头指向锁定的格子时，
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label10" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 1209.0
 offset_top = 866.0
 offset_right = 1605.0
@@ -171,6 +181,7 @@ text = "锁定的格子，
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label11" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 1225.0
 offset_top = 268.0
 offset_right = 1349.0
@@ -179,6 +190,7 @@ text = "攻击牌"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label12" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 1225.0
 offset_top = 696.0
 offset_right = 1349.0
@@ -187,6 +199,7 @@ text = "防御牌"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label13" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 1225.0
 offset_top = 492.0
 offset_right = 1349.0
@@ -195,6 +208,7 @@ text = "治疗牌"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label14" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 1580.0
 offset_top = 256.0
 offset_right = 1760.0
@@ -203,6 +217,7 @@ text = "特殊效果牌"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label15" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 1580.0
 offset_top = 492.0
 offset_right = 1760.0
@@ -211,6 +226,7 @@ text = "解锁格子牌"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label16" type="Label" parent="back2"]
+layout_mode = 0
 offset_left = 1580.0
 offset_top = 660.0
 offset_right = 1796.0
@@ -314,11 +330,12 @@ label_settings = SubResource("LabelSettings_70hfh")
 [node name="Label10" type="Label" parent="back1"]
 layout_mode = 0
 offset_left = 557.0
-offset_top = 797.0
-offset_right = 797.0
-offset_bottom = 850.0
+offset_top = 777.0
+offset_right = 809.0
+offset_bottom = 858.0
 text = "尖刺：受到伤害时，
-对来源造成层数点伤害"
+对来源造成层数点伤害,
+回合结束时-1"
 label_settings = SubResource("LabelSettings_70hfh")
 
 [node name="Label11" type="Label" parent="back1"]

@@ -145,8 +145,8 @@ func _on_level_8_button_pressed():
 #endregion
 
 func enter_battle(index:int):
-	main.switch_screen(main.battle_screen)
 	main.battle_screen.index = index
-	main.in_battle = true
+	main.switch_screen(main.battle_screen)
+
 
 #endregion
