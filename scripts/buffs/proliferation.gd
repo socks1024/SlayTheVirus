@@ -1,9 +1,9 @@
-class_name InactivitionBuff
+class_name ProliferationBuff
 extends BaseBuff
 
 func initialize(amount:int):
-	id = "inactivation"
-	buff_texture = inactivation_texture
+	id = "proliferation"
+	buff_texture = proliferation_texture
 	
 	super(amount)
 
@@ -11,4 +11,4 @@ func act():
 	pass
 
 func act_on_turn_end():
-	amount -= 1
+	pass

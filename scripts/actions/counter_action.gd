@@ -1,4 +1,4 @@
-class_name AttackAction
+class_name CounterAction
 extends BaseAction
 
 var damage:int
@@ -9,11 +9,6 @@ func _init(target:BaseCreature,source:BaseCreature,damage:int):
 
 
 func act():
-	damage += target.get_buff_amount("vulnerable")
-	damage -= source.get_buff_amount("inactivation")
-	
-	if target.get_buff_amount("spike") > 0:
-		main.battle_manager.use(CounterAction.new(source,target,target.get_buff_amount("spike")))
 	
 	target.get_hurt(damage)
 

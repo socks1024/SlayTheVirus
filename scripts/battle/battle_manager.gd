@@ -1,6 +1,7 @@
 class_name BattleManager
 extends Node2D
 
+@onready var player_card_manager = $PlayerCardManager
 @onready var board = $PlayerCardManager/Board
 @onready var hand = $PlayerCardManager/Hand
 @onready var main = get_parent().get_parent()
@@ -11,22 +12,12 @@ var boss:Boss
 
 func _ready():
 	
-	#region buff
+	initialize_buff()
 	
-	buff_scripts.append("res://src/scripts/buffs/inactivition_buff.gd")
-	
-	for b in buff_scripts:
-		var node = b.new()
-		node.initialize()
-		var key = node.id
-		buff_list[key] = b
-	
-	#endregion
-	
-	$PlayerCardManager.cards_played.connect(get_parent().enemy_parts_act.emit)
-	
+	$PlayerCardManager.cards_played.connect(change_side)
 
-#region TURN_PROCESS
+
+#region PROCESS
 
 #signal enemy_intention_refresh
 #signal player_draw_card
@@ -41,6 +32,11 @@ func player_win():
 func player_lose():
 	battle_screen.battle_end.emit(false)
 
+@export var wait_time = 0.6
+
+func change_side():
+	get_tree().create_timer(wait_time).timeout.connect(get_parent().enemy_parts_act.emit)
+
 
 #endregion
 
@@ -51,12 +47,42 @@ func player_lose():
 var buff_scripts:Array[GDScript]
 var buff_list:= {}
 
+func initialize_buff():
+	
+	buff_scripts.append(preload("res://src/scripts/buffs/inactivition_buff.gd"))
+	buff_scripts.append(preload("res://src/scripts/buffs/vulnerable.gd"))
+	buff_scripts.append(preload("res://src/scripts/buffs/trauma.gd"))
+	buff_scripts.append(preload("res://src/scripts/buffs/paralysis.gd"))
+	buff_scripts.append(preload("res://src/scripts/buffs/proliferation.gd"))
+	buff_scripts.append(preload("res://src/scripts/buffs/spike.gd"))
+	buff_scripts.append(preload("res://src/scripts/buffs/stun.gd"))
+	
+	for b in buff_scripts:
+		var node = b.new()
+		node.initialize(1)
+		buff_list[node.id] = b
+		node.queue_free()
+
 func build_buff(id:String,amount:int) -> BaseBuff:
 	var buff = buff_sample_packed.instantiate()
 	buff.set_script(buff_list[id])
+	buff.battle_manager = self
 	buff.initialize(amount)
 	
 	return buff
+
+var trash_cards = [37,38,39,40,41,42]
+
+func gain_trash(amount:int,random:bool,id:String):
+	for i in amount:
+		var trash_card:BaseCard
+		
+		if random:
+			trash_card = main.get_card(main.card_list.keys()[trash_cards.pick_random()-1])
+		else:
+			trash_card = main.get_card(id)
+		
+		player.draw_pile.add_card(trash_card)
 
 
 #endregion
@@ -86,12 +112,5 @@ func use(action:BaseAction):
 	action.act()
 	action.act_show()
 	action.queue_free()
-
-#endregion
-
-#region player <-> enemy
-
-func get_highlight_part() -> BaseCreature:	
-	return boss.focused_part
 
 #endregion

@@ -1,9 +1,9 @@
-class_name InactivitionBuff
+class_name SpikeBuff
 extends BaseBuff
 
 func initialize(amount:int):
-	id = "inactivation"
-	buff_texture = inactivation_texture
+	id = "spike"
+	buff_texture = spike_texture
 	
 	super(amount)
 

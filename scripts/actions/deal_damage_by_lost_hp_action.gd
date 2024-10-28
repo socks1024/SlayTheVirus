@@ -8,4 +8,4 @@ func _init(target:BaseCreature,source:BaseCreature):
 
 
 func act():
-	AttackAction.new(target,source,source.maxhealth - source.health).act()
+	main.battle_manager.use(AttackAction.new(target,source,source.maxhealth - source.health))

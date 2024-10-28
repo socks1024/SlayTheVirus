@@ -60,6 +60,19 @@ func set_part_highlight(part:BasePart):
 			set_part_color(part,highlight_color)
 
 
+func get_targeted_part() -> BasePart:
+	if focused_part.targetable:
+		return focused_part
+	else:
+		if main_part.targetable:
+			return main_part
+		else:
+			for part in parts_queue.values():
+				if part.targetable:
+					return part
+	
+	return focused_part
+
 
 #endregion
 
@@ -72,7 +85,7 @@ var turn_count = 0
 
 func _on_turn_start():
 	turn_count += 1
-	decide_intention()
+	get_tree().create_timer(0.5).timeout.connect(decide_intention)
 
 
 func boss_act():
@@ -82,10 +95,17 @@ func boss_act():
 
 func _on_main_part_dead():
 	battle_manager.player_win()
+	battle_manager.boss = null
+	self.queue_free()
+
+func buff_act_on_turn_end():
+	for part in parts:
+		part.buff_act_on_turn_end()
+
 
 #region intentions
 
-const INTENTION_PLAY_INTERVAL := 0.25
+const INTENTION_PLAY_INTERVAL := 0.2
 
 
 func decide_intention():
@@ -97,19 +117,17 @@ func set_part_intention(part:BasePart,intention:BaseIntention):
 
 
 func play_all_intentions():
+	var tween := create_tween()
 	for part in parts_queue.values():
 		for intention in part.intentions:
-			var tween := create_tween()
 			
 			intention.act()
 			
 			tween.tween_callback(_on_focus_part.bind(part))
 			tween.tween_callback(part.play_intention.bind(intention))
 			tween.tween_interval(INTENTION_PLAY_INTERVAL)
-		
-		part.intentions.clear()
 	
-	all_intentions_played.emit()
+	tween.finished.connect(all_intentions_played.emit)
 
 signal all_intentions_played
 

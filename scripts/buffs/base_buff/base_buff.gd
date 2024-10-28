@@ -1,6 +1,8 @@
 class_name BaseBuff
 extends Node2D
 
+var battle_manager
+
 var id:String
 var amount = 0:
 	set(value):
@@ -9,8 +11,8 @@ var amount = 0:
 		if amount <= 0:
 			amount = 0
 			clear_buff.emit(self)
-		
-		label.text = str(amount)
+		if label != null:
+			label.text = str(amount)
 
 signal clear_buff(buff:BaseBuff)
 
@@ -22,14 +24,14 @@ var sprite:Sprite2D
 var label:Label
 
 func initialize(amount:int):
-	self.amount = amount
 	
 	if $Sprite2D != null && $Label != null:
 		sprite = $Sprite2D
 		label = $Label
 		
 		sprite.texture = buff_texture
-		label.text = str(amount)
+	
+	self.amount = amount
 
 
 #region acts

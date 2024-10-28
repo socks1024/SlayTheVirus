@@ -8,4 +8,4 @@ func _init(target:BaseCreature,source:BaseCreature):
 
 
 func act():
-	pass
+	main.battle_manager.board.necrosis = true

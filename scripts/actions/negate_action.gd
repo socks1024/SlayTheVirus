@@ -1,12 +1,12 @@
 class_name NegateAction
 extends BaseAction
 
-var position:Vector2
+var card:BaseCard
 
-func _init(target:BaseCreature,source:BaseCreature,position:Vector2):
+func _init(target:BaseCreature,source:BaseCreature,card:BaseCard):
 	super(target,source)
-	self.position = position
+	self.card = card
 
 
 func act():
-	pass
+	card.acts_amount = 0

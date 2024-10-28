@@ -9,4 +9,5 @@ func _init(target:BaseCreature,source:BaseCreature,amount:int):
 
 
 func act():
-	pass
+	if target is Player:
+		target.cards_per_turn_modifier += amount

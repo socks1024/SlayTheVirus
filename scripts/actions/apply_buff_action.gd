@@ -9,5 +9,4 @@ func _init(target:BaseCreature,source:BaseCreature,buff:BaseBuff):
 
 
 func act():
-	
-	source.gain_buff(buff)
+	target.gain_buff(buff)

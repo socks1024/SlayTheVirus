@@ -9,4 +9,4 @@ func _init(target:BaseCreature,source:BaseCreature,card:BaseCard):
 
 
 func act():
-	pass
+	card.exhausted = true

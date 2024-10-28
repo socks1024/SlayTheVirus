@@ -5,6 +5,8 @@ const HAND_DRAW_INTERVAL := 0.25
 const HAND_DISCARD_INTERVAL := 0.25
 const HAND_PLAY_INTERVAL := 0.25
 
+@export var hand_limit = 8
+
 @onready var main = get_tree().get_first_node_in_group("main")
 @onready var battle_screen = main.battle_screen
 @onready var battle_manager = get_parent()
@@ -13,7 +15,6 @@ const HAND_PLAY_INTERVAL := 0.25
 @onready var board = $Board
 
 var player:Player
-
 
 func connect_battle_signal():
 	main.battle_screen.battle_start.connect(start_battle)
@@ -53,13 +54,17 @@ func start_battle() -> void:
 
 func start_turn() -> void:
 	player.block = 0
-	draw_cards(player.cards_per_turn)
+	var draw_amount = player.get_cards_per_turn()
+	if draw_amount > hand_limit:
+		draw_amount = hand_limit
+	if draw_amount < 0:
+		draw_amount = 0
+	draw_cards(draw_amount)
 
 
 func player_end_turn() -> void:
 	#hand.disable_hand()
 	discard_cards()
-
 
 
 func end_battle():
@@ -85,10 +90,14 @@ func draw_cards(amount: int) -> void:
 		#func(): Events.player_hand_drawn.emit()
 	#)
 
+var negate_trash = false
 
 func discard_cards() -> void:
+	if hand.get_children().is_empty():
+		play_cards()
+	
 	for card in hand.get_children():
-		if card.card_state_machine.current_state == "state_hand_id":
+		if card.card_state_machine.current_state == "state_hand_id" && !negate_trash:
 			card.not_play_act()
 	
 	var tween := create_tween()
@@ -130,10 +139,12 @@ func play_cards():
 		cards_played.emit()
 	
 	for card in cards_placed:
-		board.set_condition(card)
+		if card.acts_amount > 0:
+			board.set_condition(card)
 	
 	for card in cards_placed:
-		card.arrow_act()
+		for i in card.acts_amount:
+			card.arrow_act()
 	
 	#battle_manager.queue_act()
 	
@@ -141,23 +152,30 @@ func play_cards():
 	for card: BaseCard in cards_placed:
 		if card.card_state_machine.current_state == "state_placed_id":
 			
-			card.act()
-			card.condition_act()
+			for i in card.acts_amount:
+				card.act()
+				card.condition_act()
+				card.after_play_act()
 			
+			card.set_modifier()
 			#battle_manager.queue_finished.connect(func():battle_manager.boss._on_focus_part(battle_manager.boss.main_part))
 			#battle_manager.queue_act()
 			
 			tween.tween_callback(board.remove_cell_card.bind(card))
-			tween.tween_callback(player.discard.add_card.bind(card))
+			if card.exhausted:
+				tween.tween_callback(player.exhausted_pile.add_card.bind(card))
+			else:
+				tween.tween_callback(player.discard.add_card.bind(card))
 			tween.tween_callback(hand.play_card.bind(card))
 			tween.tween_interval(HAND_PLAY_INTERVAL)
 	
 	
-	for card in cards_placed:
-		card.after_play_act()
+	#for card in cards_placed:
+		#card.after_play_act()
 	
 	#battle_manager.queue_act()
-	tween.finished.connect(func():battle_manager.boss._on_focus_part(battle_manager.boss.main_part))
+	if battle_manager.boss is Boss:
+		tween.finished.connect(func():battle_manager.boss._on_focus_part(battle_manager.boss.main_part))
 	tween.finished.connect(cards_played.emit)
 	#cards_played.emit()
 

@@ -1,12 +1,14 @@
 class_name MagicNumberUpAction
 extends BaseAction
 
-var position:Vector2
+var card:BaseCard
+var amount:int
 
-func _init(target:BaseCreature,source:BaseCreature,position:Vector2):
+func _init(target:BaseCreature,source:BaseCreature,card:BaseCard,amount:int):
 	super(target,source)
-	self.position = position
+	self.card = card
+	self.amount = amount
 
 
 func act():
-	pass
+	card.magic_number_modifier += amount

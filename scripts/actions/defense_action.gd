@@ -12,3 +12,7 @@ func act():
 	block -= source.get_buff_amount("paralysis")
 	
 	target.block += block
+
+
+func act_show():
+	main.play_sound(main.defense_sound)

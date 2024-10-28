@@ -1,14 +1,14 @@
 class_name CopyCardToDrawpileAction
 extends BaseAction
 
-var position:Vector2
 var amount:int
+var card:BaseCard
 
-func _init(target:BaseCreature,source:BaseCreature,amount:int,position:Vector2):
+func _init(target:BaseCreature,source:BaseCreature,amount:int,card:BaseCard):
 	super(target,source)
-	self.position = position
 	self.amount = amount
+	self.card = card
 
 
 func act():
-	pass
+	main.player.draw_pile.add_card(main.get_card(card.id))

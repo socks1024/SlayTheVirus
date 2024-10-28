@@ -1,4 +1,4 @@
-class_name NegateTrashAction
+class_name ClearBuffAction
 extends BaseAction
 
 func _init(target:BaseCreature,source:BaseCreature):
@@ -6,4 +6,6 @@ func _init(target:BaseCreature,source:BaseCreature):
 
 
 func act():
-	main.battle_manager.player_card_manager.negate_trash = true
+	if !target.buffs.is_empty():
+		for b in target.buffs:
+			target.on_clear_buff(b)

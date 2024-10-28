@@ -9,4 +9,4 @@ func _init(target:BaseCreature,source:BaseCreature,amount:int):
 
 
 func act():
-	pass
+	main.battle_manager.use(DrawAction.new(target,source,-amount))

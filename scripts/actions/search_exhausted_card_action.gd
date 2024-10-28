@@ -11,4 +11,4 @@ func _init(target:BaseCreature,source:BaseCreature,amount:int,is_random:bool):
 
 
 func act():
-	pass
+	main.battle_screen.choose_card_move_pile(main.player.exhausted_pile,main.player.draw_pile)

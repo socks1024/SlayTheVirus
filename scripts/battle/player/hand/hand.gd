@@ -91,6 +91,7 @@ func play_card(card:BaseCard) -> void:
 		play_tween.set_parallel(true)
 	play_tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
 	
+	card.rotation = 0
 	if card.target_type == card.TargetType.SELF:
 		play_tween.parallel().tween_property(card, "global_position", player_position, 0.2)
 	else:
