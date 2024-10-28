@@ -41,7 +41,7 @@ func initialize():
 func _ready():
 	initialize()
 	
-	#img.texture = normal_img
+	img.texture = normal_img
 	
 	img.mouse_entered.connect(_on_texture_rect_mouse_entered)
 	img.mouse_exited.connect(_on_texture_rect_mouse_exited)
@@ -108,14 +108,18 @@ func act():
 @export var hurt_color = Color(1,0.4,0.4)
 @export var heal_color = Color(0.4,1,0.4)
 
-var targetable = false
+var targetable = true
 
 func _on_damaged():
 	if health < maxhealth/2:
 		img.texture = angry_img
 		angry = true
 
-var angry = false
+var angry = false:
+	set(value):
+		angry = value
+		if angry:
+			img.texture = angry_img
 var destroyed = false
 
 func _on_destroyed():

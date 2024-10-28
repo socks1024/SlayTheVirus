@@ -26,7 +26,7 @@ func initialize():
 	super()
 
 
-func condition_act():
+func arrow_act():
 	if conditions[0]:
 		battle_manager.use(PlayAgainAction.new(battle_manager.player,battle_manager.player,condition_cards[0],magic_number))
 

@@ -13,8 +13,8 @@ func initialize():
 	img = preload("res://src/resources/cards/cards_imgs/35.png")
 	
 	shape = [Vector2.ZERO,Vector2.UP,Vector2.DOWN]
-	shape_arrow = [Vector2.DOWN]
-	arrow_face = [Vector2.DOWN]
+	shape_arrow = []
+	arrow_face = []
 	
 	base_damage = 0
 	base_block = 0
@@ -28,7 +28,3 @@ func initialize():
 
 func act():
 	battle_manager.use(HealAction.new(battle_manager.player,battle_manager.player,magic_number))
-
-
-func after_play_act():
-	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

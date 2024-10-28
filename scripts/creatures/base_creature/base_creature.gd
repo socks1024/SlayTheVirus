@@ -100,6 +100,7 @@ func get_buff_amount(id:String) -> int:
 	
 	return 0
 
+
 func on_clear_buff(buff):
 	for b in buffs:
 		if b == buff:

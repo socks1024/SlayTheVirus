@@ -8,7 +8,7 @@ func initialize():
 	card_type_1 = CardType.EXPAND
 	card_type_2 = CardType.EXPAND
 	target_type = TargetType.SELF
-	ability_type = AbilityType.BASIC
+	ability_type = AbilityType.EXPAND
 	
 	img = preload("res://src/resources/cards/cards_imgs/33.png")
 	
@@ -27,7 +27,7 @@ func initialize():
 
 
 func act():
-	battle_manager.add_action_to_bot(EnableRandomCellAction.new(card_target,battle_manager.player,magic_number))
+	battle_manager.use(EnableRandomCellAction.new(card_target,battle_manager.player,magic_number))
 
 func after_play_act():
-	battle_manager.add_action_to_bot(ExhaustCardAction.new(card_target,battle_manager.player,self))
+	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

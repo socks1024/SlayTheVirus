@@ -7,7 +7,7 @@ func initialize():
 	id = "MACROPHAGE"
 	card_type_1 = CardType.ATTACK
 	card_type_2 = CardType.ATTACK
-	target_type = TargetType.SELF
+	target_type = TargetType.SINGLE_PART
 	ability_type = AbilityType.SELF_EFFECT
 	
 	img = preload("res://src/resources/cards/cards_imgs/32.png")
