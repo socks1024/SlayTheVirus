@@ -35,9 +35,8 @@ func start_battle() -> void:
 	#region card&player initialize
 	
 	player = main.player
-	
-	player.health = player.maxhealth
 	player.deck = main.master_deck
+	player.buffs.clear()
 	
 	player.draw_pile = CardPile.new()
 	for c in player.deck:
@@ -53,7 +52,6 @@ func start_battle() -> void:
 
 
 func start_turn() -> void:
-	player.block = 0
 	var draw_amount = player.get_cards_per_turn()
 	if draw_amount > hand_limit:
 		draw_amount = hand_limit
@@ -68,6 +66,7 @@ func player_end_turn() -> void:
 
 
 func end_battle():
+	player.buffs.clear()
 	discard_cards()
 
 
@@ -93,8 +92,15 @@ func draw_cards(amount: int) -> void:
 var negate_trash = false
 
 func discard_cards() -> void:
-	if hand.get_children().is_empty():
+	var empty_hand = true
+	
+	for c in hand.get_children():
+		if c.card_state_machine.current_state == "state_hand_id":
+			empty_hand = false
+	
+	if empty_hand:
 		play_cards()
+		return
 	
 	for card in hand.get_children():
 		if card.card_state_machine.current_state == "state_hand_id" && !negate_trash:
@@ -106,13 +112,7 @@ func discard_cards() -> void:
 			tween.tween_callback(player.discard.add_card.bind(card))
 			tween.tween_callback(hand.discard_card.bind(card))
 			tween.tween_interval(HAND_DISCARD_INTERVAL)
-	
 	tween.finished.connect(play_cards)
-	
-	#tween.finished.connect(
-		#func():
-			#Events.player_hand_discarded.emit()
-	#)
 
 func reshuffle_deck_from_discard() -> void:
 	if not player.draw_pile.empty():

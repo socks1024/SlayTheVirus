@@ -80,7 +80,6 @@ func get_targeted_part() -> BasePart:
 
 var parts_queue:= {}
 
-
 var turn_count = 0
 
 func _on_turn_start():
@@ -97,6 +96,7 @@ func _on_main_part_dead():
 	battle_manager.player_win()
 	battle_manager.boss = null
 	self.queue_free()
+
 
 func buff_act_on_turn_end():
 	for part in parts:
@@ -115,8 +115,13 @@ func decide_intention():
 func set_part_intention(part:BasePart,intention:BaseIntention):
 	part.set_intention(intention)
 
+var pass_play = false
 
 func play_all_intentions():
+	if pass_play:
+		all_intentions_played.emit()
+	
+	
 	var tween := create_tween()
 	for part in parts_queue.values():
 		for intention in part.intentions:

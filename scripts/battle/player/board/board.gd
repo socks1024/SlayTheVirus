@@ -108,7 +108,9 @@ func can_place(card:BaseCard) -> bool:
 	for s in card.shape:
 		var pos = v + s
 		
-		if pos.x < 1 || pos.x > 5 || pos.y < 1 || pos.y > 5:
+		if pos.x <= 0 || pos.x >= 6 || pos.y <= 0 || pos.y >= 6:
+			print(pos)
+			print("out_of_bound")
 			return false
 		
 		var cell = get_cell(pos)
