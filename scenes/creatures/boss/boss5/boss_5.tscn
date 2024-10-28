@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://co6am044quwo1"]
+
+[ext_resource type="Script" path="res://src/scenes/creatures/boss/boss5/boss_5.gd" id="1_5xux8"]
+[ext_resource type="PackedScene" uid="uid://633om3nc53ur" path="res://src/scenes/creatures/enemy_parts/part_sample.tscn" id="2_dkbga"]
+[ext_resource type="Texture2D" uid="uid://bk5g7xj4osuy3" path="res://src/resources/enemies/level5/level3_body_normal.png" id="3_uaoqm"]
+[ext_resource type="Texture2D" uid="uid://dalael61ll86g" path="res://src/resources/enemies/level5/level3_body_angry.png" id="4_5prx7"]
+[ext_resource type="Texture2D" uid="uid://bqxu81touhiys" path="res://src/resources/enemies/level5/level3_cup_good.png" id="5_t8fg0"]
+[ext_resource type="Texture2D" uid="uid://buhi8t8x3vqql" path="res://src/resources/enemies/level5/level3_cup_bad.png" id="6_s8nuu"]
+[ext_resource type="Texture2D" uid="uid://efakiclvamtf" path="res://src/resources/enemies/level5/level3_sword1_good.png" id="7_gisnf"]
+[ext_resource type="Texture2D" uid="uid://de811rihu36j" path="res://src/resources/enemies/level5/level3_sword1_bad.png" id="8_fu64m"]
+[ext_resource type="Texture2D" uid="uid://cuukugpjfi4ci" path="res://src/resources/enemies/level5/level3_sword2_good.png" id="9_q8rac"]
+[ext_resource type="Texture2D" uid="uid://cx8ysygkd3k1g" path="res://src/resources/enemies/level5/level3_sword2_bad.png" id="10_wvcim"]
+
+[node name="Boss5" type="Node2D"]
+z_index = -1
+script = ExtResource("1_5xux8")
+
+[node name="RoyalViruXIII" parent="." instance=ExtResource("2_dkbga")]
+position = Vector2(104, -112)
+normal_img = ExtResource("3_uaoqm")
+angry_img = ExtResource("4_5prx7")
+destroyed_img = ExtResource("4_5prx7")
+part_name = "贵族十三世"
+part_mhp = 50
+part_id = "boss_5_main"
+is_main_part = true
+intention_offset = Vector2(136, 112)
+
+[node name="TextureRect" parent="RoyalViruXIII" index="0"]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_uaoqm")
+metadata/_edit_use_anchors_ = true
+
+[node name="CoffeeCup" parent="." instance=ExtResource("2_dkbga")]
+position = Vector2(291, 140)
+normal_img = ExtResource("5_t8fg0")
+angry_img = ExtResource("5_t8fg0")
+destroyed_img = ExtResource("6_s8nuu")
+part_name = "咖啡杯"
+part_mhp = 12
+part_id = "boss_5_part1"
+intention_offset = Vector2(171, 88)
+
+[node name="TextureRect" parent="CoffeeCup" index="0"]
+offset_left = 14.0
+offset_top = 23.0
+offset_right = 214.0
+offset_bottom = 223.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_t8fg0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sword1" parent="." instance=ExtResource("2_dkbga")]
+position = Vector2(491, 3)
+normal_img = ExtResource("7_gisnf")
+angry_img = ExtResource("7_gisnf")
+destroyed_img = ExtResource("8_fu64m")
+part_name = "刺剑（右）"
+part_mhp = 20
+part_id = "boss_5_part2"
+intention_offset = Vector2(213, 84)
+
+[node name="TextureRect" parent="Sword1" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_gisnf")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sword2" parent="." instance=ExtResource("2_dkbga")]
+position = Vector2(360, 494)
+normal_img = ExtResource("9_q8rac")
+angry_img = ExtResource("9_q8rac")
+destroyed_img = ExtResource("10_wvcim")
+part_name = "刺剑（左）"
+part_mhp = 20
+part_id = "boss_5_part3"
+intention_offset = Vector2(240, 80)
+
+[node name="TextureRect" parent="Sword2" index="0"]
+offset_left = -20.0
+offset_top = -17.0
+offset_right = 380.0
+offset_bottom = 333.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_q8rac")
+metadata/_edit_use_anchors_ = true
+
+[editable path="RoyalViruXIII"]
+[editable path="CoffeeCup"]
+[editable path="Sword1"]
+[editable path="Sword2"]

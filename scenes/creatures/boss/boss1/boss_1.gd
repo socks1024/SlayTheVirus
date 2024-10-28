@@ -17,7 +17,7 @@ func _ready():
 func decide_intention():
 	
 	#region hard nozzle
-	if hard_nozzle.destroyed:
+	if hard_nozzle.destroyed || hard_nozzle.get_buff_amount("stun") > 0:
 		set_part_intention(hard_nozzle,StunIntention.new(hard_nozzle,hard_nozzle))
 	else:
 		set_part_intention(hard_nozzle,DefenseIntention.new(1,hard_nozzle,hard_nozzle))
@@ -30,7 +30,7 @@ func decide_intention():
 	
 	#region heart lump
 	
-	if heart_lump.destroyed:
+	if heart_lump.destroyed || heart_lump.get_buff_amount("stun") > 0:
 		set_part_intention(heart_lump,StunIntention.new(heart_lump,heart_lump))
 	else:
 		set_part_intention(heart_lump,HealIntention.new(2,lazy_viru,heart_lump))
@@ -39,7 +39,7 @@ func decide_intention():
 	
 	#region smile nozzle
 	
-	if smile_nozzle.destroyed:
+	if smile_nozzle.destroyed || smile_nozzle.get_buff_amount("stun") > 0:
 		set_part_intention(smile_nozzle,StunIntention.new(smile_nozzle,smile_nozzle))
 	else:
 		set_part_intention(smile_nozzle,AttackIntention.new(1,battle_manager.player,smile_nozzle))
@@ -48,7 +48,10 @@ func decide_intention():
 	
 	#region lazy viru
 	
-	set_part_intention(lazy_viru,DefenseIntention.new(2,lazy_viru,lazy_viru))
-	set_part_intention(lazy_viru,AttackIntention.new(4,battle_manager.player,lazy_viru))
+	if lazy_viru.get_buff_amount("stun") > 0:
+		set_part_intention(lazy_viru,StunIntention.new(lazy_viru,lazy_viru))
+	else:
+		set_part_intention(lazy_viru,DefenseIntention.new(2,lazy_viru,lazy_viru))
+		set_part_intention(lazy_viru,AttackIntention.new(4,battle_manager.player,lazy_viru))
 	
 	#endregion

@@ -22,6 +22,7 @@ func exit():
 	main.change_music(main.main_opening)
 
 var music
+var bg_texture
 
 func initialize_battle():
 	
@@ -31,34 +32,44 @@ func initialize_battle():
 		1:
 			boss = boss_1.instantiate()
 			music = main.battle_1_opening
+			bg_texture = boss_1_background
 		2:
-			boss = boss_1.instantiate()
-			#boss = boss_2.instantiate()
+			#boss = boss_1.instantiate()
+			boss = boss_2.instantiate()
 			music = main.battle_1_opening
+			bg_texture = boss_2_background
 		3:
-			boss = boss_1.instantiate()
-			#boss = boss_3.instantiate()
+			#boss = boss_1.instantiate()
+			boss = boss_3.instantiate()
 			music = main.battle_2
+			bg_texture = boss_3_background
 		4:
-			boss = boss_1.instantiate()
-			#boss = boss_4.instantiate()
+			#boss = boss_1.instantiate()
+			boss = boss_4.instantiate()
 			music = main.battle_2
+			bg_texture = boss_4_background
 		5:
-			boss = boss_1.instantiate()
-			#boss = boss_5.instantiate()
+			#boss = boss_1.instantiate()
+			boss = boss_5.instantiate()
 			music = main.battle_3
+			bg_texture = boss_5_background
 		6:
-			boss = boss_1.instantiate()
-			#boss = boss_6.instantiate()
+			#boss = boss_1.instantiate()
+			boss = boss_6.instantiate()
 			music = main.battle_3
+			bg_texture = boss_6_1_background
 		7:
-			boss = boss_1.instantiate()
-			#boss = boss_7.instantiate()
+			#boss = boss_1.instantiate()
+			boss = boss_7.instantiate()
 			music = main.battle_4
+			bg_texture = boss_7_background
 		8:
-			boss = boss_1.instantiate()
-			#boss = boss_8.instantiate()
+			#boss = boss_1.instantiate()
+			boss = boss_8.instantiate()
 			music = main.battle_5_opening
+			bg_texture = boss_8_background
+	
+	$LeftBack.texture = bg_texture
 	
 	for b in $BattleManager/MonsterManager.get_children():
 		b.queue_free()
@@ -99,16 +110,16 @@ signal level_pass(index:int)
 @export var boss_9:PackedScene
 
 var boss_1_background:= preload("res://src/resources/board/back1.png")
-var boss_2_background:= preload("res://src/resources/board/back1.png")
-var boss_3_background:= preload("res://src/resources/board/back1.png")
-var boss_4_background:= preload("res://src/resources/board/back1.png")
-var boss_5_background:= preload("res://src/resources/board/back1.png")
-var boss_6_1_background:= preload("res://src/resources/board/back1.png")
-var boss_6_2_background:= preload("res://src/resources/board/back1.png")
-var boss_6_3_background:= preload("res://src/resources/board/back1.png")
-var boss_7_background:= preload("res://src/resources/board/back1.png")
-var boss_8_background:= preload("res://src/resources/board/back1.png")
-var boss_9_background:= preload("res://src/resources/board/back1.png")
+var boss_2_background:= preload("res://src/resources/board/back2.png")
+var boss_3_background:= preload("res://src/resources/board/back3.png")
+var boss_4_background:= preload("res://src/resources/board/back4.png")
+var boss_5_background:= preload("res://src/resources/board/back5.png")
+var boss_6_1_background:= preload("res://src/resources/board/back6_1.png")
+var boss_6_2_background:= preload("res://src/resources/board/back6_2.png")
+var boss_6_3_background:= preload("res://src/resources/board/back6_3.png")
+var boss_7_background:= preload("res://src/resources/board/back7.png")
+var boss_8_background:= preload("res://src/resources/board/back8.png")
+var boss_9_background:= preload("res://src/resources/board/back9.png")
 
 var win_texture:= preload("res://src/resources/intention&table/win.png")
 var lose_texture:= preload("res://src/resources/intention&table/lose.png")
@@ -173,9 +184,11 @@ func _on_battle_end(win:bool):
 		level_pass.emit(index)
 		level_unlock.emit(index + 1)
 		$WinOrLose.texture = win_texture
+		main.bgm_player.stop()
 		main.play_sound(main.victory_sound)
 	else:
 		$WinOrLose.texture = lose_texture
+		main.bgm_player.stop()
 		main.play_sound(main.shock_sound)
 	
 	$WinOrLose.show()

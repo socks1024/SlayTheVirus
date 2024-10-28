@@ -18,8 +18,8 @@ var card_sample:BaseCard:
 var count = 0:
 	set(value):
 		
-		if value >= 10:
-			value = 9
+		if value >= 3:
+			value = 3
 		
 		count = value
 		$Count.text = str(count)

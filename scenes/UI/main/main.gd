@@ -103,7 +103,6 @@ var heal_sound = preload("res://src/resources/audio/SFX/英雄恢复(hero_recove
 
 #endregion
 
-
 func change_music(music):
 	bgm_player.stream = music
 	bgm_player.play()

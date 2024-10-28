@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsiqv0nn4xroj"]
+
+[ext_resource type="Script" path="res://src/scenes/creatures/boss/boss3/boss_3.gd" id="1_nv732"]
+[ext_resource type="PackedScene" uid="uid://633om3nc53ur" path="res://src/scenes/creatures/enemy_parts/part_sample.tscn" id="2_77sr2"]
+[ext_resource type="Texture2D" uid="uid://dtoy11gne8dir" path="res://src/resources/enemies/level3/level5_boss_normal.png" id="3_m3wk8"]
+[ext_resource type="Texture2D" uid="uid://5muedrgc8bhq" path="res://src/resources/enemies/level3/level3-1-1.png" id="4_bcy74"]
+[ext_resource type="Texture2D" uid="uid://dkdvpwlaus2b7" path="res://src/resources/enemies/level3/level3-1-2.png" id="5_teury"]
+[ext_resource type="Texture2D" uid="uid://c4ieb24yug7e8" path="res://src/resources/enemies/level3/level3-2-1.png" id="6_0ic11"]
+[ext_resource type="Texture2D" uid="uid://cjp240ajxxr63" path="res://src/resources/enemies/level3/level3-2-2.png" id="7_rdte5"]
+[ext_resource type="Texture2D" uid="uid://bt6gpotvu52dg" path="res://src/resources/enemies/level3/level3-3-1.png" id="8_ixvta"]
+[ext_resource type="Texture2D" uid="uid://3cfodng4xe2v" path="res://src/resources/enemies/level3/level3-3-2.png" id="9_bw4cw"]
+
+[node name="Boss3" type="Node2D"]
+z_index = -1
+script = ExtResource("1_nv732")
+
+[node name="VirusArmy" parent="." instance=ExtResource("2_77sr2")]
+position = Vector2(-1, 86)
+normal_img = ExtResource("3_m3wk8")
+angry_img = ExtResource("3_m3wk8")
+destroyed_img = ExtResource("3_m3wk8")
+part_name = "病毒军团"
+part_mhp = 30
+part_id = "boss_3_main"
+is_main_part = true
+intention_offset = Vector2(200, 30)
+
+[node name="TextureRect" parent="VirusArmy" index="0"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_m3wk8")
+metadata/_edit_use_anchors_ = true
+
+[node name="ShieldVirus" parent="." instance=ExtResource("2_77sr2")]
+position = Vector2(343, 228)
+normal_img = ExtResource("4_bcy74")
+angry_img = ExtResource("4_bcy74")
+destroyed_img = ExtResource("5_teury")
+part_name = "举盾病毒"
+part_mhp = 10
+part_id = "boss_3_part1"
+intention_offset = Vector2(350, 80)
+
+[node name="TextureRect" parent="ShieldVirus" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_bcy74")
+flip_h = true
+metadata/_edit_use_anchors_ = true
+
+[node name="HammerVirus" parent="." instance=ExtResource("2_77sr2")]
+position = Vector2(331, 1)
+normal_img = ExtResource("6_0ic11")
+angry_img = ExtResource("6_0ic11")
+destroyed_img = ExtResource("7_rdte5")
+part_name = "锤子病毒"
+part_mhp = 10
+part_id = "boss_3_part2"
+intention_offset = Vector2(350, 100)
+
+[node name="TextureRect" parent="HammerVirus" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_0ic11")
+metadata/_edit_use_anchors_ = true
+
+[node name="HeartVirus" parent="." instance=ExtResource("2_77sr2")]
+position = Vector2(243, 445)
+normal_img = ExtResource("8_ixvta")
+angry_img = ExtResource("8_ixvta")
+destroyed_img = ExtResource("9_bw4cw")
+part_name = "治疗病毒"
+part_mhp = 10
+part_id = "boss_3_part3"
+intention_offset = Vector2(300, 100)
+
+[node name="TextureRect" parent="HeartVirus" index="0"]
+offset_left = -20.0
+offset_top = -17.0
+offset_right = 380.0
+offset_bottom = 333.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_ixvta")
+metadata/_edit_use_anchors_ = true
+
+[editable path="VirusArmy"]
+[editable path="ShieldVirus"]
+[editable path="HammerVirus"]
+[editable path="HeartVirus"]

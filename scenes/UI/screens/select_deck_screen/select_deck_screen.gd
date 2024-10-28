@@ -26,8 +26,8 @@ func exit():
 			main.master_deck.append(editor.card_id)
 	
 	
-	while(main.master_deck.size() < 13):
-		main.master_deck.append("RESERVIST")
+	while(main.master_deck.size() < 12):
+		main.master_deck.append(cards_list.keys()[total_unlocked_card_list.pick_random()-1])
 	
 	for editor in deck_root.get_children():
 		editor.queue_free()
@@ -55,8 +55,8 @@ var showcase_size = showcase_row_x * showcase_row_y
 var showed_card_number = 0#左上角的展示牌
 
 var total_unlocked_card_list = [1,2,3,4,5,6,7,8,9,10,11,12,13,17,35]
-var boss_1_unlocked_card_list = [15,20,21]
-var boss_2_unlocked_card_list = [16,18,31]
+var boss_1_unlocked_card_list = [20,21,31]
+var boss_2_unlocked_card_list = [15,16,18]
 var boss_3_unlocked_card_list = [27,28,36]
 var boss_4_unlocked_card_list = [24,25,30]
 var boss_5_unlocked_card_list = [14,22,23]

@@ -1,51 +1,57 @@
 class_name Boss2
 extends Boss
 
-@onready var hard_nozzle = $HardNozzle
-@onready var smile_nozzle = $SmileNozzle
-@onready var heart_lump = $HeartLump
-@onready var lazy_viru = $LazyViru
+@onready var cone_head = $ConeHead
+@onready var tentacle = $Tentacle
+@onready var poke_viru = $PokeViru
 
 func _ready():
 	super()
-	parts_queue[hard_nozzle.part_id] = hard_nozzle
-	parts_queue[smile_nozzle.part_id] = smile_nozzle
-	parts_queue[heart_lump.part_id] = heart_lump
-	parts_queue[lazy_viru.part_id] = lazy_viru
+	parts_queue[poke_viru.part_id] = poke_viru
+	parts_queue[tentacle.part_id] = tentacle
+	parts_queue[cone_head.part_id] = cone_head
 
 
 func decide_intention():
 	
-	#region hard nozzle
-	if hard_nozzle.destroyed:
-		set_part_intention(hard_nozzle,StunIntention.new(hard_nozzle,hard_nozzle))
+	#region poke viru
+	
+	if poke_viru.get_buff_amount("stun") > 0:
+		set_part_intention(poke_viru,StunIntention.new(poke_viru,poke_viru))
 	else:
-		set_part_intention(hard_nozzle,DefenseIntention.new(1,hard_nozzle,hard_nozzle))
-		set_part_intention(hard_nozzle,DefenseIntention.new(2,heart_lump,hard_nozzle))
+		if poke_viru.angry:
+			set_part_intention(poke_viru,ApplyDebuffIntention.new(2,battle_manager.player,poke_viru,"vulnerable"))
+		else:
+			set_part_intention(poke_viru,ApplyDebuffIntention.new(1,battle_manager.player,poke_viru,"vulnerable"))
+		
+		if tentacle.destroyed:
+			set_part_intention(poke_viru,AttackIntention.new(3,battle_manager.player,poke_viru))
+		if cone_head.destroyed:
+			set_part_intention(poke_viru,DefenseIntention.new(3,poke_viru,poke_viru))
 	
 	#endregion
 	
-	#region heart lump
+	#region tentacle
 	
-	if heart_lump.destroyed:
-		set_part_intention(heart_lump,StunIntention.new(heart_lump,heart_lump))
+	if tentacle.destroyed || tentacle.get_buff_amount("stun") > 0:
+		set_part_intention(tentacle,StunIntention.new(tentacle,tentacle))
 	else:
-		set_part_intention(heart_lump,HealIntention.new(2,lazy_viru,heart_lump))
+		set_part_intention(tentacle,AttackIntention.new(1,battle_manager.player,tentacle))
+		set_part_intention(tentacle,AttackIntention.new(1,battle_manager.player,tentacle))
+		set_part_intention(tentacle,AttackIntention.new(1,battle_manager.player,tentacle))
 	
 	#endregion
 	
-	#region smile nozzle
+	#region cone head
 	
-	if smile_nozzle.destroyed:
-		set_part_intention(smile_nozzle,StunIntention.new(smile_nozzle,smile_nozzle))
+	if cone_head.destroyed || cone_head.get_buff_amount("stun") > 0:
+		set_part_intention(cone_head,StunIntention.new(cone_head,cone_head))
 	else:
-		set_part_intention(smile_nozzle,AttackIntention.new(1,battle_manager.player,smile_nozzle))
+		if cone_head.block >= 8:
+			set_part_intention(cone_head,AttackIntention.new(cone_head.block,battle_manager.player,cone_head))
+			cone_head.block = 0
+		else:
+			set_part_intention(cone_head,DefenseIntention.new(4,cone_head,cone_head))
 	
 	#endregion
 	
-	#region lazy viru
-	
-	set_part_intention(lazy_viru,DefenseIntention.new(2,lazy_viru,lazy_viru))
-	set_part_intention(lazy_viru,AttackIntention.new(4,battle_manager.player,lazy_viru))
-	
-	#endregion

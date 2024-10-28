@@ -23,10 +23,10 @@ func select_target_process():
 	
 	self.scale.x = (mouse_pos - global_position).length()/height
 	
-	if Input.is_action_just_pressed("Drag Card")&&!battle_manager.get_highlight_part().destroyed:
+	if Input.is_action_just_pressed("Drag Card"):
 		var target:BaseCreature
 		
-		target = battle_manager.get_highlight_part()
+		target = battle_manager.boss.get_targeted_part()
 		
 		arrow_targeted.emit(target)
 		main.play_sound(main.equip_sound)

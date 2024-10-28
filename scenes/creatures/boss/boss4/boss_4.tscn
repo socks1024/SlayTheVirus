@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://djskgqu60tv8r"]
+
+[ext_resource type="Script" path="res://src/scenes/creatures/boss/boss4/boss_4.gd" id="1_syuq2"]
+[ext_resource type="PackedScene" uid="uid://633om3nc53ur" path="res://src/scenes/creatures/enemy_parts/part_sample.tscn" id="2_vvweu"]
+[ext_resource type="Texture2D" uid="uid://0op2s2i25m2h" path="res://src/resources/enemies/level4/level4_body_normal.png" id="3_clrv1"]
+[ext_resource type="Texture2D" uid="uid://b6paa82k7jtvk" path="res://src/resources/enemies/level4/level4_body_angry.png" id="4_aoyb1"]
+[ext_resource type="Texture2D" uid="uid://bpun2tscasnew" path="res://src/resources/enemies/level4/level4-4-1.png" id="5_faktc"]
+[ext_resource type="Texture2D" uid="uid://dwargp0ydls6" path="res://src/resources/enemies/level4/level4-4-2.png" id="6_ei16d"]
+[ext_resource type="Texture2D" uid="uid://dvjpfxw0n0d8m" path="res://src/resources/enemies/level4/level4-6-1.png" id="7_4miih"]
+[ext_resource type="Texture2D" uid="uid://bfo7hslvp7ivt" path="res://src/resources/enemies/level4/level4-6-2.png" id="8_sxj11"]
+[ext_resource type="Texture2D" uid="uid://ct4g0o43ly4qa" path="res://src/resources/enemies/level4/level4-5-1.png" id="9_gsbbm"]
+[ext_resource type="Texture2D" uid="uid://c0tio3jlulgfd" path="res://src/resources/enemies/level4/level4-5-2.png" id="10_63r6p"]
+
+[node name="Boss4" type="Node2D"]
+z_index = -1
+script = ExtResource("1_syuq2")
+
+[node name="Mr_chaos" parent="." instance=ExtResource("2_vvweu")]
+position = Vector2(129, 64)
+normal_img = ExtResource("3_clrv1")
+angry_img = ExtResource("4_aoyb1")
+destroyed_img = ExtResource("4_aoyb1")
+part_name = "伟大的混沌"
+part_mhp = 40
+part_id = "boss_4_main"
+is_main_part = true
+intention_offset = Vector2(230, 20)
+
+[node name="TextureRect" parent="Mr_chaos" index="0"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_clrv1")
+metadata/_edit_use_anchors_ = true
+
+[node name="ArmTentacle" parent="." instance=ExtResource("2_vvweu")]
+position = Vector2(8, -29)
+normal_img = ExtResource("5_faktc")
+angry_img = ExtResource("5_faktc")
+destroyed_img = ExtResource("6_ei16d")
+part_name = "肢状触手"
+part_mhp = 16
+part_id = "boss_4_part1"
+intention_offset = Vector2(100, 220)
+
+[node name="TextureRect" parent="ArmTentacle" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_faktc")
+metadata/_edit_use_anchors_ = true
+
+[node name="MouthTentacle" parent="." instance=ExtResource("2_vvweu")]
+position = Vector2(349, -24)
+normal_img = ExtResource("7_4miih")
+angry_img = ExtResource("7_4miih")
+destroyed_img = ExtResource("8_sxj11")
+part_name = "口状触手"
+part_mhp = 16
+part_id = "boss_3_part2"
+intention_offset = Vector2(350, 160)
+
+[node name="TextureRect" parent="MouthTentacle" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_4miih")
+metadata/_edit_use_anchors_ = true
+
+[node name="Shield" parent="." instance=ExtResource("2_vvweu")]
+position = Vector2(310, 395)
+normal_img = ExtResource("9_gsbbm")
+angry_img = ExtResource("9_gsbbm")
+destroyed_img = ExtResource("10_63r6p")
+part_name = "盾壳"
+part_mhp = 30
+part_id = "boss_3_part3"
+intention_offset = Vector2(240, 180)
+
+[node name="TextureRect" parent="Shield" index="0"]
+offset_left = -20.0
+offset_top = -17.0
+offset_right = 380.0
+offset_bottom = 333.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("9_gsbbm")
+metadata/_edit_use_anchors_ = true
+
+[editable path="Mr_chaos"]
+[editable path="ArmTentacle"]
+[editable path="MouthTentacle"]
+[editable path="Shield"]

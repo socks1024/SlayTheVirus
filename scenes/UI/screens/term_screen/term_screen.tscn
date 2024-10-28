@@ -77,7 +77,6 @@ texture_hover = ExtResource("7_gkpw6")
 script = ExtResource("2_4uwo6")
 
 [node name="back2" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -87,45 +86,54 @@ texture = ExtResource("3_ye3fc")
 [node name="Label" type="Label" parent="back2"]
 layout_mode = 0
 offset_left = 220.0
-offset_top = 231.0
+offset_top = 320.0
 offset_right = 508.0
-offset_bottom = 268.0
+offset_bottom = 357.0
 text = "敌人将要发动攻击"
+label_settings = SubResource("LabelSettings_0c2wm")
+
+[node name="Label17" type="Label" parent="back2"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 177.0
+offset_right = 508.0
+offset_bottom = 214.0
+text = "敌人将要恢复生命"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label2" type="Label" parent="back2"]
 layout_mode = 0
 offset_left = 220.0
-offset_top = 377.0
+offset_top = 461.0
 offset_right = 508.0
-offset_bottom = 414.0
+offset_bottom = 498.0
 text = "敌人将要获得格挡"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label3" type="Label" parent="back2"]
 layout_mode = 0
 offset_left = 220.0
-offset_top = 538.0
+offset_top = 596.0
 offset_right = 508.0
-offset_bottom = 575.0
+offset_bottom = 633.0
 text = "敌人将要获得增益"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label4" type="Label" parent="back2"]
 layout_mode = 0
 offset_left = 220.0
-offset_top = 684.0
+offset_top = 747.0
 offset_right = 508.0
-offset_bottom = 721.0
+offset_bottom = 784.0
 text = "敌人将要造成减益"
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="Label5" type="Label" parent="back2"]
 layout_mode = 0
 offset_left = 220.0
-offset_top = 813.0
+offset_top = 866.0
 offset_right = 508.0
-offset_bottom = 890.0
+offset_bottom = 943.0
 text = "敌人将要进行
 特殊行动"
 label_settings = SubResource("LabelSettings_0c2wm")
@@ -237,6 +245,7 @@ text = "垃圾牌：
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="back1" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
