@@ -4,10 +4,14 @@ extends Control
 var battle_manager
 
 var location:Vector2
+var cell_location:Vector2
 
 func initialize():
 	
 	card_name = tr(id + "_NAME")
+	
+	conditions.resize(shape_arrow.size())
+	condition_cards.resize(shape_arrow.size())
 	
 	if $CardTemp/Name != null && $CardTemp/Description != null:
 		card_temp_textures = $CardTemp
@@ -15,6 +19,26 @@ func initialize():
 		
 		$CardTemp/Name.text = card_name
 		$CardTemp/Description.text = card_description
+
+
+##通过箭头的方式选定目标
+func get_target(target:BasePart):
+	if target_type == TargetType.SINGLE_PART:
+		card_target = target
+
+
+func _on_card_build_finished():
+	
+	if !card_temp_textures.mouse_entered.is_connected(_on_mouse_entered):
+		card_temp_textures.mouse_entered.connect(_on_mouse_entered)
+	if !card_temp_textures.mouse_entered.is_connected(_on_mouse_exited):
+		card_temp_textures.mouse_exited.connect(_on_mouse_exited)
+	
+	for t in card_tetris_textures.get_children():
+		if !t.mouse_entered.is_connected(_on_mouse_entered):
+			t.mouse_entered.connect(_on_mouse_entered)
+		if !t.mouse_entered.is_connected(_on_mouse_exited):
+			t.mouse_exited.connect(_on_mouse_exited)
 
 
 #region types
@@ -48,7 +72,8 @@ enum AbilityType{
 
 #region data
 
-var negated = false
+var exhausted = false
+var acts_amount = 1
 
 var use_default_position = true
 var default_position = Vector2.ZERO
@@ -77,25 +102,35 @@ var base_damage = 0
 var base_block = 0
 var base_magic_number = 0
 
-var damage = base_damage:
+var damage_modifier = 0
+var block_modifier = 0
+var magic_number_modifier = 0
+
+var damage = 0:
 	get():
-		damage = base_damage
+		damage = damage_modifier + base_damage
 		return damage
-var block = base_block:
+var block = 0:
 	get():
-		block = base_block
+		block = block_modifier + base_block
 		return block
-var magic_number = base_magic_number:
+var magic_number = 0:
 	get():
-		magic_number = base_magic_number
+		magic_number = magic_number_modifier + base_magic_number
 		return magic_number
+
+func set_modifier():
+	damage_modifier = 0
+	block_modifier = 0
+	magic_number_modifier = 0
+	acts_amount = 1
 
 #endregion
 
 #region acts
 
 var conditions:Array[bool]
-
+var condition_cards:Array[BaseCard]
 
 #箭头需求满足时执行，回合结束时最先执行的操作
 func arrow_act():
@@ -123,28 +158,6 @@ func not_play_act():
 
 
 #endregion
-
-
-
-##通过箭头的方式选定目标
-func get_target(target:BasePart):
-	if target_type == TargetType.SINGLE_PART:
-		card_target = target
-
-
-func _on_card_build_finished():
-	
-	if !card_temp_textures.mouse_entered.is_connected(_on_mouse_entered):
-		card_temp_textures.mouse_entered.connect(_on_mouse_entered)
-	if !card_temp_textures.mouse_entered.is_connected(_on_mouse_exited):
-		card_temp_textures.mouse_exited.connect(_on_mouse_exited)
-	
-	for t in card_tetris_textures.get_children():
-		if !t.mouse_entered.is_connected(_on_mouse_entered):
-			t.mouse_entered.connect(_on_mouse_entered)
-		if !t.mouse_entered.is_connected(_on_mouse_exited):
-			t.mouse_exited.connect(_on_mouse_exited)
-
 
 #region animation state machine
 

@@ -27,9 +27,9 @@ func initialize():
 
 
 func not_play_act():
-	battle_manager.add_action_to_bot(ApplyBuffAction.new(battle_manager.player,battle_manager.player,battle_manager.build_buff("trauma",magic_number)))
-	battle_manager.add_action_to_bot(ApplyBuffAction.new(battle_manager.player,battle_manager.player,battle_manager.build_buff("vulnerable",magic_number)))
+	battle_manager.use(ApplyBuffAction.new(battle_manager.player,battle_manager.player,battle_manager.build_buff("trauma",magic_number)))
+	battle_manager.use(ApplyBuffAction.new(battle_manager.player,battle_manager.player,battle_manager.build_buff("vulnerable",magic_number)))
 
 
 func after_play_act():
-	battle_manager.add_action_to_bot(ExhaustCardAction.new(card_target,battle_manager.player,self))
+	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

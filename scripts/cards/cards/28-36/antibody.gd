@@ -30,8 +30,8 @@ func condition_act():
 	if conditions[0]:
 		var all_part = battle_manager.enemy.get_all_parts()
 		for part in all_part:
-			battle_manager.add_action_to_bot(ApplyBuffAction.new(card_target,battle_manager.player,battle_manager.build_buff("stun",magic_number)))
+			battle_manager.use(ApplyBuffAction.new(part,battle_manager.player,battle_manager.build_buff("stun",magic_number)))
 
 
 func after_play_act():
-	battle_manager.add_action_to_bot(ExhaustCardAction.new(card_target,battle_manager.player,self))
+	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

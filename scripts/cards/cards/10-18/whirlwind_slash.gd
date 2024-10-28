@@ -28,10 +28,10 @@ func initialize():
 
 
 func act():
-	battle_manager.add_action_to_bot(AttackAction.new(card_target,battle_manager.player,damage))
+	battle_manager.use(AttackAction.new(card_target,battle_manager.player,damage))
 
 
 func condition_act():
 	for condition in conditions:
 		if condition:
-			battle_manager.add_action_to_bot(ApplyBuffAction.new(card_target,battle_manager.player,battle_manager.build_buff("trauma",magic_number)))
+			battle_manager.use(ApplyBuffAction.new(card_target,battle_manager.player,battle_manager.build_buff("trauma",magic_number)))

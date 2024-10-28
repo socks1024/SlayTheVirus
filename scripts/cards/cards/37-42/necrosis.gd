@@ -27,7 +27,7 @@ func initialize():
 
 
 func not_play_act():
-	battle_manager.add_action_to_bot(NegateArrowAction.new(card_target,battle_manager.player))
+	battle_manager.use(NegateArrowAction.new(card_target,battle_manager.player))
 
 func after_play_act():
-	battle_manager.add_action_to_bot(ExhaustCardAction.new(card_target,battle_manager.player,self))
+	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

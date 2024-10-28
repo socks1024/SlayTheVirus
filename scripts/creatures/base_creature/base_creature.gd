@@ -22,8 +22,8 @@ var creature_name:String
 
 #region health & block
 
-var maxhealth:int
-var health:int:
+var maxhealth = 0
+var health = 0:
 	set(value):
 		
 		var original_health = health
@@ -40,19 +40,20 @@ var health:int:
 			damaged.emit()
 		elif health > original_health:
 			healed.emit()
-var block:int:
+var block = 0:
 	set(value):
-		
 		if value < block:
 			block = value
+			
 			if block <= 0:
 				block = 0
 				block_broken.emit()
+				damage_blocked.emit()
 			else:
 				damage_blocked.emit()
 		elif value > block:
-			gained_block.emit()
 			block = value
+			gained_block.emit()
 
 func get_hurt(damage):
 	if damage > block:
@@ -81,9 +82,16 @@ func gain_buff(new_buff:BaseBuff):
 	
 	if !has_same_buff:
 		buffs.append(new_buff)
+		new_buff.buff_owner = self
 		new_buff.clear_buff.connect(on_clear_buff)
 	
 	buff_changed.emit()
+
+
+func buff_act_on_turn_end():
+	for buff in buffs:
+		buff.act_on_turn_end()
+
 
 func get_buff_amount(id:String) -> int:
 	for b in buffs:
@@ -95,6 +103,7 @@ func get_buff_amount(id:String) -> int:
 func on_clear_buff(buff):
 	for b in buffs:
 		if b == buff:
+			buffs.erase(b)
 			b.queue_free()
 	
 	buff_changed.emit()

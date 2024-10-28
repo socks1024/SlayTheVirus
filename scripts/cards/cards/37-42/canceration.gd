@@ -27,4 +27,4 @@ func initialize():
 
 
 func not_play_act():
-	battle_manager.add_action_to_bot(GainTrashAction.new(card_target,battle_manager.player,magic_number,true,""))
+	battle_manager.use(GainTrashAction.new(card_target,battle_manager.player,magic_number,true,""))

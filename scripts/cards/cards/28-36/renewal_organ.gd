@@ -27,8 +27,8 @@ func initialize():
 
 
 func act():
-	battle_manager.add_action_to_bot(HealAction.new(card_target,battle_manager.player,magic_number))
+	battle_manager.use(HealAction.new(battle_manager.player,battle_manager.player,magic_number))
 
 func condition_act():
 	if conditions[0]:
-		battle_manager.add_action_to_bot(HealAction.new(card_target,battle_manager.player,magic_number))
+		battle_manager.use(battle_manager.player.new(card_target,battle_manager.player,magic_number))

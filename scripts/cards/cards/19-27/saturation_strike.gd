@@ -30,7 +30,7 @@ func initialize():
 func condition_act():
 	for condition in conditions:
 		if condition:
-			battle_manager.add_action_to_bot(AttackAction.new(card_target,battle_manager.player,damage))
+			battle_manager.use(AttackAction.new(card_target,battle_manager.player,damage))
 
 func after_play_act():
-	battle_manager.add_action_to_bot(ExhaustCardAction.new(card_target,battle_manager.player,self))
+	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

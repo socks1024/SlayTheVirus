@@ -10,7 +10,7 @@ func initialize():
 	target_type = TargetType.SELF
 	ability_type = AbilityType.BUFF
 	
-	img = preload("res://src/resources/cards/cards_imgs/11.png")
+	img = preload("res://src/resources/cards/cards_imgs/12.png")
 	
 	shape = [Vector2.ZERO,Vector2.LEFT,Vector2.RIGHT]
 	shape_arrow = [Vector2.ZERO]
@@ -29,4 +29,4 @@ func initialize():
 
 func arrow_act():
 	if conditions[0]:
-		battle_manager.add_action_to_bot(MagicNumberUpAction.new(card_target,battle_manager.player,location+shape_arrow[0]+arrow_face[0]))
+		battle_manager.use(MagicNumberUpAction.new(card_target,battle_manager.player,condition_cards[0],magic_number))

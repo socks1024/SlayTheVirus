@@ -28,9 +28,9 @@ func initialize():
 
 func arrow_act():
 	if conditions[0]:
-		battle_manager.add_action_to_bot(NegateAction.new(card_target,battle_manager.player,location+shape_arrow[0]+arrow_face[0]))
+		battle_manager.use(NegateAction.new(battle_manager.player,battle_manager.player,condition_cards[0]))
 
 
 
 func act():
-	battle_manager.add_action_to_bot(DrawAction.new(card_target,battle_manager.player,magic_number))
+	battle_manager.use(DrawAction.new(battle_manager.player,battle_manager.player,magic_number))

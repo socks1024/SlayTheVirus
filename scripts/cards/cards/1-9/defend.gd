@@ -28,4 +28,4 @@ func initialize():
 
 
 func act():
-	battle_manager.add_action_to_bot(DefenseAction.new(card_target,battle_manager.player,block))
+	battle_manager.use(DefenseAction.new(battle_manager.player,battle_manager.player,block))

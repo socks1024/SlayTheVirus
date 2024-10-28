@@ -12,7 +12,14 @@ func initialize():
 	id = "player"
 
 var starting_deck: CardPile
+
+var cards_per_turn_modifier = 0
 var cards_per_turn = 5
+
+func get_cards_per_turn():
+	var c = cards_per_turn + cards_per_turn_modifier
+	cards_per_turn_modifier = 0
+	return c
 
 var deck: Array[String]
 var discard: CardPile

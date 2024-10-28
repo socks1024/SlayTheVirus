@@ -27,7 +27,7 @@ func initialize():
 
 
 func act():
-	var all_part = battle_manager.enemy.get_all_parts()
+	var all_part = battle_manager.boss.parts
 	
 	for part in all_part:
-		battle_manager.add_action_to_bot(AttackAction.new(part,battle_manager.player,damage))
+		battle_manager.use(AttackAction.new(part,battle_manager.player,damage))

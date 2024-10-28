@@ -29,4 +29,8 @@ func initialize():
 func arrow_act():
 	for i in conditions.size():
 		if conditions[i]:
-			battle_manager.add_action_to_bot(EnableCellAction.new(card_target,battle_manager.player,location+shape_arrow[i]+arrow_face[i]))
+			battle_manager.use(EnableCellAction.new(card_target,battle_manager.player,cell_location+shape_arrow[i]+arrow_face[i],battle_manager.board))
+
+
+func after_play_act():
+	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

@@ -28,4 +28,5 @@ func initialize():
 
 
 func act():
-	battle_manager.add_action_to_bot(DrawAction.new(card_target,battle_manager.player,magic_number))
+	pass
+	#battle_manager.use(DrawAction.new(battle_manager.player,battle_manager.player,magic_number))

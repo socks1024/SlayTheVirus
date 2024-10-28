@@ -27,7 +27,7 @@ func initialize():
 
 
 func not_play_act():
-	battle_manager.add_action_to_bot(DrawLessNextTurnAction.new(card_target,battle_manager.player,magic_number))
+	battle_manager.use(DrawLessNextTurnAction.new(card_target,battle_manager.player,magic_number))
 
 func after_play_act():
-	battle_manager.add_action_to_bot(ExhaustCardAction.new(card_target,battle_manager.player,self))
+	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

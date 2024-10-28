@@ -3,12 +3,13 @@ extends Node2D
 
 #region resources
 
-var attack_intention_texture = preload("res://src/resources/intention&table/敌人攻击.png")
-var defense_intention_texture = preload("res://src/resources/intention&table/敌人防御.png")
-var buff_intention_texture = preload("res://src/resources/intention&table/敌人增益.png")
-var debuff_intention_texture = preload("res://src/resources/intention&table/敌人减益.png")
-var unknown_intention_texture = preload("res://src/resources/intention&table/敌人未知.png")
-var stun_intention_texture = preload("res://src/resources/intention&table/晕眩！.png")
+var attack_intention_texture = preload("res://src/resources/enemies/intention/敌人攻击.png")
+var defense_intention_texture = preload("res://src/resources/enemies/intention/敌人防御.png")
+var buff_intention_texture = preload("res://src/resources/enemies/intention/敌人增益.png")
+var debuff_intention_texture = preload("res://src/resources/enemies/intention/敌人减益.png")
+var unknown_intention_texture = preload("res://src/resources/enemies/intention/敌人未知.png")
+var stun_intention_texture = preload("res://src/resources/enemies/intention/晕眩！.png")
+var heal_intention_texture = preload("res://src/resources/enemies/intention/敌人治疗.png")
 
 #endregion
 
@@ -18,6 +19,7 @@ enum IntentionType{
 	BUFF,
 	DEBUFF,
 	UNKNOWN,
+	HEAL,
 	STUN,}
 
 enum TargetType{
@@ -65,6 +67,8 @@ func _init(intention_type:IntentionType,amount:int,target_type:TargetType,target
 			sprite.texture = debuff_intention_texture
 		IntentionType.UNKNOWN:
 			sprite.texture = unknown_intention_texture
+		IntentionType.HEAL:
+			sprite.texture = heal_intention_texture
 		IntentionType.STUN:
 			sprite.texture = stun_intention_texture
 	

@@ -28,8 +28,9 @@ func initialize():
 
 func condition_act():
 	if conditions[0]:
-		battle_manager.add_action_to_bot(DrawMoreEveryTurnAction.new(card_target,battle_manager.player,magic_number))
+		battle_manager.use(DrawMoreEveryTurnAction.new(battle_manager.player,battle_manager.player,magic_number))
+		battle_manager.use(ApplyBuffAction.new(battle_manager.player,battle_manager.player,battle_manager.build_buff("proliferation",magic_number)))
 
 
 func after_play_act():
-	battle_manager.add_action_to_bot(ExhaustCardAction.new(card_target,battle_manager.player,self))
+	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

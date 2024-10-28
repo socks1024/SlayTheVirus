@@ -32,10 +32,13 @@ func get_location_in_board():
 	
 	var location_in_board = Vector2.ZERO
 	
-	for cell_row in board.cells:
-		for cell in cell_row:
-			if (cell.global_position - card_data.global_position).length() <= Vector2(50,50).length():
-				location_in_board = cell.global_position
+	for cell in board.all_cells:
+		var size = Vector2(50,50)
+		
+		#if (cell.global_position + Vector2(50,50) - card_data.get_viewport().get_mouse_position()).length() <= Vector2(50,50).length():
+		if cell.global_position.distance_to(card_data.get_viewport().get_mouse_position()) < size.length()/2:
+			location_in_board = cell.global_position
+			print(cell.cell_pos)
 	
 	card_data.location = location_in_board
 

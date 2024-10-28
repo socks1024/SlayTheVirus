@@ -28,6 +28,6 @@ func initialize():
 
 func after_play_act():
 	if conditions[0]:
-		battle_manager.add_action_to_bot(ExhaustPointedCardAction.new(card_target,battle_manager.player,location+shape_arrow[0]+arrow_face[0]))
+		battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,condition_cards[0]))
 	
-	battle_manager.add_action_to_bot(ExhaustCardAction.new(card_target,battle_manager.player,self))
+	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

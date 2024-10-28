@@ -59,7 +59,7 @@ func _process(delta):
 @export var intention_offset:Vector2
 
 var intentions:Array[BaseIntention]
-var intention_width = 120
+var intention_width = 70
 
 func set_intention(intention:BaseIntention):
 	add_child(intention)
@@ -83,13 +83,18 @@ func play_intention(intention:BaseIntention):
 	tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
 	
 	if intention.target_type == intention.TargetType.PLAYER:
-		tween.parallel().tween_property(intention, "position", player_position, 0.2)
+		tween.parallel().tween_property(intention, "global_position", player_position, 0.2)
 	if intention.target_type == intention.TargetType.BOSS:
-		tween.parallel().tween_property(intention, "position", boss_position, 0.2)
+		tween.parallel().tween_property(intention, "global_position", boss_position, 0.2)
 	if intention.target_type == intention.TargetType.NO_TARGET:
-		tween.parallel().tween_property(intention, "position", no_position, 0.2)
+		tween.parallel().tween_property(intention, "global_position", no_position, 0.2)
 	
-	tween.finished.connect(func():remove_child(intention))
+	tween.finished.connect(clear_intention)
+
+func clear_intention():
+	for intention in intentions:
+		intention.queue_free()
+	intentions.clear()
 
 #endregion
 
@@ -101,19 +106,34 @@ func act():
 #region part states
 
 @export var hurt_color = Color(1,0.4,0.4)
+@export var heal_color = Color(0.4,1,0.4)
+
+var targetable = false
 
 func _on_damaged():
-	pass
+	if health < maxhealth/2:
+		img.texture = angry_img
+		angry = true
 
+var angry = false
 var destroyed = false
 
 func _on_destroyed():
+	clear_intention()
+	set_intention(StunIntention.new(self,self))
+	
 	destroyed = true
+	targetable = false
 	img.texture = destroyed_img
-	modulate_color = Color(0.2,0.2,0.2)
+	modulate_color = Color(0.4,0.4,0.4)
 	
 	if is_main_part:
 		boss._on_main_part_dead()
+
+func _on_regenerated():
+	destroyed = false
+	img.texture = normal_img
+	modulate_color = Color.WHITE
 
 #endregion
 

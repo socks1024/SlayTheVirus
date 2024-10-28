@@ -28,7 +28,7 @@ func initialize():
 
 func arrow_act():
 	if conditions[0]:
-		battle_manager.add_action_to_bot(CopyCardToDrawpileAction.new(card_target,battle_manager.player,magic_number,location+shape_arrow[0]+arrow_face[0]))
+		battle_manager.use(CopyCardToDrawpileAction.new(card_target,battle_manager.player,magic_number,condition_cards[0]))
 
 func after_play_act():
-	battle_manager.add_action_to_bot(ExhaustCardAction.new(card_target,battle_manager.player,self))
+	battle_manager.use(ExhaustCardAction.new(card_target,battle_manager.player,self))

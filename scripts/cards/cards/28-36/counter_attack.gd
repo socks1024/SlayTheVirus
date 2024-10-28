@@ -28,4 +28,4 @@ func initialize():
 
 func condition_act():
 	if conditions[0]:
-		battle_manager.add_action_to_bot(ApplyBuffAction.new(card_target,battle_manager.player,battle_manager.build_buff("spike",magic_number)))
+		battle_manager.use(ApplyBuffAction.new(battle_manager.player,battle_manager.player,battle_manager.build_buff("spike",magic_number)))

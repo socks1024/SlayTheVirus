@@ -18,7 +18,7 @@ func initialize():
 	
 	base_damage = 0
 	base_block = 0
-	base_magic_number = 2
+	base_magic_number = 1
 	
 	
 	card_description = tr(id + "_DESCRIPTION") % [base_magic_number]
@@ -29,4 +29,4 @@ func initialize():
 
 func condition_act():
 	if conditions[0]:
-		battle_manager.add_action_to_bot(DrawAction.new(card_target,battle_manager.player,magic_number))
+		battle_manager.use(DrawAction.new(battle_manager.player,battle_manager.player,magic_number))

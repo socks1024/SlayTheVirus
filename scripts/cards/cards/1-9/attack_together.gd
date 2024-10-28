@@ -28,9 +28,9 @@ func initialize():
 
 
 func act():
-	battle_manager.add_action_to_bot(AttackAction.new(card_target,battle_manager.player,damage))
+	battle_manager.use(AttackAction.new(card_target,battle_manager.player,damage))
 
 
 func condition_act():
 	if conditions[0]:
-		battle_manager.add_action_to_bot(AttackAction.new(card_target,battle_manager.player,damage))
+		battle_manager.use(AttackAction.new(card_target,battle_manager.player,damage))

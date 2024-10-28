@@ -27,4 +27,4 @@ func initialize():
 
 
 func act():
-	battle_manager.add_action_to_bot(NegateTrashAction.new(card_target,battle_manager.player))
+	battle_manager.use(NegateTrashAction.new(card_target,battle_manager.player))

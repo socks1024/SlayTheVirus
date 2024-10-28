@@ -14,7 +14,7 @@ func initialize():
 	
 	shape = [Vector2.ZERO,Vector2.LEFT,Vector2.RIGHT,Vector2(2,0),Vector2(-2,0)]
 	shape_arrow = [Vector2.LEFT,Vector2.RIGHT]
-	arrow_face = [Vector2.UP,Vector2.RIGHT]
+	arrow_face = [Vector2.UP,Vector2.DOWN]
 	
 	base_damage = 0
 	base_block = 0
@@ -27,10 +27,10 @@ func initialize():
 
 
 func act():
-	battle_manager.add_action_to_bot(SearchExhaustedCardAction.new(card_target,battle_manager.player,magic_number,false))
+	battle_manager.use(SearchExhaustedCardAction.new(card_target,battle_manager.player,magic_number,false))
 
 
 func condition_act():
 	for condition in conditions:
 		if condition:
-			battle_manager.add_action_to_bot(GainTrashAction.new(card_target,battle_manager.player,magic_number,true,""))
+			battle_manager.use(GainTrashAction.new(card_target,battle_manager.player,magic_number,true,""))

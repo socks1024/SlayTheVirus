@@ -29,4 +29,4 @@ func initialize():
 
 func arrow_act():
 	if conditions[0]:
-		battle_manager.add_action_to_bot(AttackBlockUpAction.new(card_target,battle_manager.player,location+shape_arrow[0]+arrow_face[0]))
+		battle_manager.use(AttackBlockUpAction.new(battle_manager.player,battle_manager.player,condition_cards[0],magic_number))

@@ -13,11 +13,14 @@ func enter(data:BaseCard):
 	card_data.global_position = card_data.location
 	card_data.battle_manager.board.set_cell_card(card_data)
 	card_data.card_tetris_textures.show()
+	card_data.card_tetris_textures.set_mouse_filter(card_data.MOUSE_FILTER_IGNORE)
 	card_data.z_index -= 1;
 	
 	card_data.battle_manager.main.play_sound(card_data.battle_manager.main.equip_sound)
 	
 	if card_data.target_type == card_data.TargetType.SINGLE_PART:
+		if indicator != null:
+			indicator.queue_free()
 		var selector = selector_sample.instantiate()
 		selector.battle_manager = card_data.battle_manager
 		selector.arrow_targeted.connect(card_data.get_target)
@@ -27,6 +30,7 @@ func enter(data:BaseCard):
 func exit():
 	card_data.battle_manager.board.remove_cell_card(card_data)
 	card_data.card_tetris_textures.hide()
+	card_data.card_tetris_textures.set_mouse_filter(card_data.MOUSE_FILTER_PASS)
 	card_data.z_index += 1
 	
 	card_data.battle_manager.main.play_sound(card_data.battle_manager.main.cancel_sound)
