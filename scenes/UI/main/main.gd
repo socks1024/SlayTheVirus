@@ -28,7 +28,6 @@ func _ready():
 	battle_manager.player = player
 	battle_manager.trash_cards = select_deck_screen.boss_8_unlocked_card_list
 	
-	
 	change_music(main_opening)
 
 #region global
@@ -143,6 +142,7 @@ func save_game():
 	config.set_value("Level","levels_unlock_condition",choose_level_screen.levels_unlock_condition)
 	config.set_value("Level","levels_try_condition",choose_level_screen.levels_try_condition)
 	config.set_value("Level","levels_pass_condition",choose_level_screen.levels_pass_condition)
+	config.set_value("Level","secret_level_entered",choose_level_screen.secret_level_entered)
 	
 	config.save("res://save.cfg")
 
@@ -157,6 +157,7 @@ func load_game() -> bool:
 	choose_level_screen.levels_unlock_condition = config.get_value("Level","levels_unlock_condition")
 	choose_level_screen.levels_try_condition = config.get_value("Level","levels_try_condition")
 	choose_level_screen.levels_pass_condition = config.get_value("Level","levels_pass_condition")
+	choose_level_screen.secret_level_entered = config.get_value("Level","secret_level_entered")
 	
 	return true
 

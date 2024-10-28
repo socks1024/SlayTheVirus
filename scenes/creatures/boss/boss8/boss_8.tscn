@@ -1,0 +1,152 @@
+[gd_scene load_steps=18 format=3 uid="uid://dgpn4r6lnesoc"]
+
+[ext_resource type="Script" path="res://src/scenes/creatures/boss/boss8/boss_8.gd" id="1_upgjg"]
+[ext_resource type="PackedScene" uid="uid://633om3nc53ur" path="res://src/scenes/creatures/enemy_parts/part_sample.tscn" id="2_mgmg6"]
+[ext_resource type="Texture2D" uid="uid://djoc2qmhv3m81" path="res://src/resources/enemies/level8/level8-body-normal.png" id="3_v7m3h"]
+[ext_resource type="Texture2D" uid="uid://c11d6a0nfoymb" path="res://src/resources/enemies/level8/level8-body-angry.png" id="4_7pojp"]
+[ext_resource type="Texture2D" uid="uid://crgc38iuii5gv" path="res://src/resources/enemies/level8/level8_boss_normal.png" id="5_o7yiw"]
+[ext_resource type="Texture2D" uid="uid://bjgsnos2kl37e" path="res://src/resources/enemies/level8/level8-4-2.png" id="7_ygavq"]
+[ext_resource type="Texture2D" uid="uid://cd6cxf8vdi2a1" path="res://src/resources/enemies/level8/level8-4-1.png" id="8_a78mu"]
+[ext_resource type="Texture2D" uid="uid://421xutynn2jr" path="res://src/resources/enemies/level8/level8-6-2.png" id="9_eaf4d"]
+[ext_resource type="Texture2D" uid="uid://d1b1m60dho4rq" path="res://src/resources/enemies/level8/level8-6-1.png" id="11_gl2u6"]
+[ext_resource type="Texture2D" uid="uid://csyflloluthmi" path="res://src/resources/enemies/level8/level8-5-2.png" id="11_w71lv"]
+[ext_resource type="Texture2D" uid="uid://dx1n84hvrfhp8" path="res://src/resources/enemies/level8/level8-1-2.png" id="13_xevis"]
+[ext_resource type="Texture2D" uid="uid://b26v85w47jukc" path="res://src/resources/enemies/level8/level8-5-1.png" id="14_6wd7t"]
+[ext_resource type="Texture2D" uid="uid://vc7n12g6raqv" path="res://src/resources/enemies/level8/level8-2-2.png" id="15_h54h4"]
+[ext_resource type="Texture2D" uid="uid://cw0tjuudkuydv" path="res://src/resources/enemies/level8/level8-1-1.png" id="15_maqqv"]
+[ext_resource type="Texture2D" uid="uid://ch5vuegirygsc" path="res://src/resources/enemies/level8/level8-3-1.png" id="16_117cq"]
+[ext_resource type="Texture2D" uid="uid://bfr8tp3y4brpa" path="res://src/resources/enemies/level8/level8-3-2.png" id="17_3qsy6"]
+[ext_resource type="Texture2D" uid="uid://bfsoghm6tt2f2" path="res://src/resources/enemies/level8/level8-2-1.png" id="17_b7xep"]
+
+[node name="Boss8" type="Node2D"]
+z_index = -1
+position = Vector2(-105, -33)
+script = ExtResource("1_upgjg")
+
+[node name="VirusKing" parent="." instance=ExtResource("2_mgmg6")]
+position = Vector2(205, 109)
+normal_img = ExtResource("3_v7m3h")
+angry_img = ExtResource("4_7pojp")
+destroyed_img = ExtResource("4_7pojp")
+part_name = "病毒之王"
+part_mhp = 36
+part_id = "boss_8_main"
+is_main_part = true
+intention_offset = Vector2(383, 211)
+
+[node name="TextureRect" parent="VirusKing" index="0"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_o7yiw")
+metadata/_edit_use_anchors_ = true
+
+[node name="Crown" parent="." instance=ExtResource("2_mgmg6")]
+position = Vector2(390, -7)
+normal_img = ExtResource("8_a78mu")
+angry_img = ExtResource("8_a78mu")
+destroyed_img = ExtResource("7_ygavq")
+part_name = "王冠"
+part_mhp = 15
+part_id = "boss_8_part1"
+intention_offset = Vector2(262, 64)
+
+[node name="TextureRect" parent="Crown" index="0"]
+offset_left = 14.0
+offset_top = 23.0
+offset_right = 214.0
+offset_bottom = 223.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_a78mu")
+metadata/_edit_use_anchors_ = true
+
+[node name="SharpLump" parent="." instance=ExtResource("2_mgmg6")]
+position = Vector2(607, 133)
+normal_img = ExtResource("11_gl2u6")
+angry_img = ExtResource("11_gl2u6")
+destroyed_img = ExtResource("9_eaf4d")
+part_name = "硬肿块"
+part_mhp = 24
+part_id = "boss_8_part2"
+intention_offset = Vector2(311, 50)
+
+[node name="TextureRect" parent="SharpLump" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("11_gl2u6")
+metadata/_edit_use_anchors_ = true
+
+[node name="SlimeEmisionHole" parent="." instance=ExtResource("2_mgmg6")]
+position = Vector2(127, 336)
+normal_img = ExtResource("14_6wd7t")
+angry_img = ExtResource("14_6wd7t")
+destroyed_img = ExtResource("11_w71lv")
+part_name = "排粘液口"
+part_mhp = 20
+part_id = "boss_8_part3"
+intention_offset = Vector2(90, 230)
+
+[node name="TextureRect" parent="SlimeEmisionHole" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("14_6wd7t")
+metadata/_edit_use_anchors_ = true
+
+[node name="HealingLump" parent="." instance=ExtResource("2_mgmg6")]
+position = Vector2(531, 463)
+normal_img = ExtResource("15_maqqv")
+angry_img = ExtResource("15_maqqv")
+destroyed_img = ExtResource("13_xevis")
+part_name = "治疗囊"
+part_mhp = 18
+part_id = "boss_8_part4"
+intention_offset = Vector2(249, 156)
+
+[node name="TextureRect" parent="HealingLump" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("15_maqqv")
+metadata/_edit_use_anchors_ = true
+
+[node name="ViruLeft" parent="." instance=ExtResource("2_mgmg6")]
+position = Vector2(97, 163)
+normal_img = ExtResource("17_b7xep")
+angry_img = ExtResource("17_b7xep")
+destroyed_img = ExtResource("15_h54h4")
+part_name = "病毒（左）"
+part_mhp = 5
+part_id = "boss_8_part5"
+intention_offset = Vector2(103, -13)
+
+[node name="TextureRect" parent="ViruLeft" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("16_117cq")
+metadata/_edit_use_anchors_ = true
+
+[node name="ViruRight" parent="." instance=ExtResource("2_mgmg6")]
+position = Vector2(815, 409)
+normal_img = ExtResource("16_117cq")
+angry_img = ExtResource("16_117cq")
+destroyed_img = ExtResource("17_3qsy6")
+part_name = "病毒（右）"
+part_mhp = 5
+part_id = "boss_8_part6"
+intention_offset = Vector2(-71, -20)
+
+[node name="TextureRect" parent="ViruRight" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_b7xep")
+metadata/_edit_use_anchors_ = true
+
+[editable path="VirusKing"]
+[editable path="Crown"]
+[editable path="SharpLump"]
+[editable path="SlimeEmisionHole"]
+[editable path="HealingLump"]
+[editable path="ViruLeft"]
+[editable path="ViruRight"]

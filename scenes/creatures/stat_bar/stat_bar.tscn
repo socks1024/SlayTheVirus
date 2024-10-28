@@ -47,14 +47,13 @@ offset_bottom = 168.0
 value = 100.0
 texture_progress = ExtResource("2_1kqe8")
 
-[node name="HealthNum" type="Label" parent="HealthBar"]
+[node name="HealthNum" type="Label" parent="."]
 z_index = 2
 z_as_relative = false
-layout_mode = 0
-offset_left = 307.0
-offset_top = -11.0
-offset_right = 465.0
-offset_bottom = 56.0
+offset_left = 375.0
+offset_top = 121.0
+offset_right = 533.0
+offset_bottom = 188.0
 text = "25/25"
 label_settings = SubResource("LabelSettings_crura")
 

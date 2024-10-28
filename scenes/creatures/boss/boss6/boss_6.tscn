@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://def03jdo2lux4"]
+
+[ext_resource type="Script" path="res://src/scenes/creatures/boss/boss6/boss_6.gd" id="1_o2ffo"]
+[ext_resource type="PackedScene" uid="uid://633om3nc53ur" path="res://src/scenes/creatures/enemy_parts/part_sample.tscn" id="2_fj2st"]
+[ext_resource type="Texture2D" uid="uid://c3hy18stkmn02" path="res://src/resources/enemies/level6/level6_body_normal.png" id="3_yum1k"]
+[ext_resource type="Texture2D" uid="uid://bks3dyqhvtw1" path="res://src/resources/enemies/level6/level6_body_angry.png" id="4_cv7en"]
+[ext_resource type="Texture2D" uid="uid://b17mryl7ptibc" path="res://src/resources/enemies/level6/level6-2-1.png" id="5_5ygob"]
+[ext_resource type="Texture2D" uid="uid://ciiao0enjvh6d" path="res://src/resources/enemies/level6/level6-2-2.png" id="6_g0ngq"]
+[ext_resource type="Texture2D" uid="uid://be36ga0jsdetc" path="res://src/resources/enemies/level6/level6-1-1.png" id="7_ugx8w"]
+[ext_resource type="Texture2D" uid="uid://dw8rrab0nnw5h" path="res://src/resources/enemies/level6/level6-1-2.png" id="8_yq1il"]
+
+[node name="Boss6" type="Node2D"]
+z_index = -1
+script = ExtResource("1_o2ffo")
+
+[node name="BeautifulVirus" parent="." instance=ExtResource("2_fj2st")]
+position = Vector2(205, 109)
+normal_img = ExtResource("3_yum1k")
+angry_img = ExtResource("4_cv7en")
+destroyed_img = ExtResource("4_cv7en")
+part_name = "美毒"
+part_mhp = 520
+part_id = "boss_6_main"
+is_main_part = true
+intention_offset = Vector2(194, -38)
+
+[node name="TextureRect" parent="BeautifulVirus" index="0"]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_yum1k")
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftPonytail" parent="." instance=ExtResource("2_fj2st")]
+position = Vector2(140, 46)
+normal_img = ExtResource("5_5ygob")
+angry_img = ExtResource("5_5ygob")
+destroyed_img = ExtResource("6_g0ngq")
+part_name = "左马尾"
+part_mhp = 15
+part_id = "boss_6_part1"
+intention_offset = Vector2(36, 116)
+
+[node name="TextureRect" parent="LeftPonytail" index="0"]
+offset_left = 14.0
+offset_top = 23.0
+offset_right = 214.0
+offset_bottom = 223.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_5ygob")
+metadata/_edit_use_anchors_ = true
+
+[node name="RightPonytail" parent="." instance=ExtResource("2_fj2st")]
+position = Vector2(449, 69)
+normal_img = ExtResource("7_ugx8w")
+angry_img = ExtResource("7_ugx8w")
+destroyed_img = ExtResource("8_yq1il")
+part_name = "右马尾"
+part_mhp = 15
+part_id = "boss_6_part2"
+intention_offset = Vector2(170, 91)
+
+[node name="TextureRect" parent="RightPonytail" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_ugx8w")
+metadata/_edit_use_anchors_ = true
+
+[editable path="BeautifulVirus"]
+[editable path="LeftPonytail"]
+[editable path="RightPonytail"]

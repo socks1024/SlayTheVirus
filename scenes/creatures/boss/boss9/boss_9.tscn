@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://bw37hjyjqjd5h"]
+
+[ext_resource type="Script" path="res://src/scenes/creatures/boss/boss9/boss_9.gd" id="1_l4ug1"]
+[ext_resource type="PackedScene" uid="uid://633om3nc53ur" path="res://src/scenes/creatures/enemy_parts/part_sample.tscn" id="2_xctmx"]
+[ext_resource type="Texture2D" uid="uid://ca45c2ap4in38" path="res://src/resources/enemies/level9/level9-1.png" id="3_2bpjf"]
+[ext_resource type="Texture2D" uid="uid://duakvolc7ycru" path="res://src/resources/enemies/level9/level-9-2.png" id="4_yas4m"]
+[ext_resource type="Texture2D" uid="uid://vhembhdkadc1" path="res://src/resources/enemies/level9/level-9-3.png" id="5_um767"]
+[ext_resource type="Texture2D" uid="uid://dcxufesubwrwr" path="res://src/resources/enemies/bubble.png" id="6_ydsch"]
+[ext_resource type="FontFile" uid="uid://c1002r6e15b28" path="res://src/resources/global/fonts/HanYiZhongYuanJian-1.ttf" id="7_mga25"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_frhuv"]
+font = ExtResource("7_mga25")
+font_size = 36
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Boss9" type="Node2D"]
+z_index = -1
+position = Vector2(-105, -33)
+script = ExtResource("1_l4ug1")
+text1 = "等一下！先不要打我！"
+text2 = "我们只是讨厌被网暴……"
+text3 = "只要你别再网暴，我们马上走！"
+
+[node name="BrainViru" parent="." instance=ExtResource("2_xctmx")]
+position = Vector2(388, 374)
+normal_img = ExtResource("3_2bpjf")
+angry_img = ExtResource("4_yas4m")
+destroyed_img = ExtResource("5_um767")
+part_name = "病毒首脑"
+part_mhp = 1
+part_id = "boss_9_main"
+is_main_part = true
+intention_offset = Vector2(383, 211)
+
+[node name="TextureRect" parent="BrainViru" index="0"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_2bpjf")
+metadata/_edit_use_anchors_ = true
+
+[node name="Bubble" parent="." instance=ExtResource("2_xctmx")]
+position = Vector2(545, 141)
+normal_img = ExtResource("6_ydsch")
+angry_img = ExtResource("6_ydsch")
+destroyed_img = ExtResource("6_ydsch")
+part_name = "对话气泡"
+part_mhp = 1
+part_id = "boss_9_bubble"
+intention_offset = Vector2(383, 211)
+
+[node name="TextureRect" parent="Bubble" index="0"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_ydsch")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Bubble"]
+offset_left = 46.0
+offset_top = 58.0
+offset_right = 334.0
+offset_bottom = 222.0
+label_settings = SubResource("LabelSettings_frhuv")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[editable path="BrainViru"]
+[editable path="Bubble"]

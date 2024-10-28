@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://57d5li3qny7o"]
+
+[ext_resource type="Script" path="res://src/scenes/creatures/boss/boss7/boss_7.gd" id="1_ikp8s"]
+[ext_resource type="PackedScene" uid="uid://633om3nc53ur" path="res://src/scenes/creatures/enemy_parts/part_sample.tscn" id="2_wdrhd"]
+[ext_resource type="Texture2D" uid="uid://br1dkcfsh1wdo" path="res://src/resources/enemies/level7/level7_boss_normal.png" id="3_88bes"]
+[ext_resource type="Texture2D" uid="uid://ithp2y455vv7" path="res://src/resources/enemies/level7/level7_boss_angry.png" id="4_3fin6"]
+[ext_resource type="Texture2D" uid="uid://bdp0scqvmxto4" path="res://src/resources/enemies/level7/level7-3-1.png" id="5_ct1pf"]
+[ext_resource type="Texture2D" uid="uid://cfrffkkbufdm2" path="res://src/resources/enemies/level7/level7-3-2.png" id="6_2bxdn"]
+[ext_resource type="Texture2D" uid="uid://ddjxq2snw2mew" path="res://src/resources/enemies/level7/level7-2-1.png" id="7_w0bf7"]
+[ext_resource type="Texture2D" uid="uid://p5vbf783kxdo" path="res://src/resources/enemies/level7/level7-2-2.png" id="8_15u1f"]
+[ext_resource type="Texture2D" uid="uid://hddhf6xo0wis" path="res://src/resources/enemies/level7/level7-1-1.png" id="9_nsmj7"]
+[ext_resource type="Texture2D" uid="uid://pv6c8aws4ibf" path="res://src/resources/enemies/level7/level7-1-2.png" id="10_lpytv"]
+
+[node name="Boss7" type="Node2D"]
+z_index = -1
+script = ExtResource("1_ikp8s")
+
+[node name="ComputerVirus" parent="." instance=ExtResource("2_wdrhd")]
+position = Vector2(205, 109)
+normal_img = ExtResource("3_88bes")
+angry_img = ExtResource("4_3fin6")
+destroyed_img = ExtResource("4_3fin6")
+part_name = "电脑病毒"
+part_mhp = 16
+part_id = "boss_7_main"
+is_main_part = true
+intention_offset = Vector2(400, 49)
+
+[node name="TextureRect" parent="ComputerVirus" index="0"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_88bes")
+metadata/_edit_use_anchors_ = true
+
+[node name="E_Shield" parent="." instance=ExtResource("2_wdrhd")]
+position = Vector2(511, 200)
+normal_img = ExtResource("5_ct1pf")
+angry_img = ExtResource("5_ct1pf")
+destroyed_img = ExtResource("6_2bxdn")
+part_name = "防火墙"
+part_mhp = 16
+part_id = "boss_7_part1"
+intention_offset = Vector2(242, 100)
+
+[node name="TextureRect" parent="E_Shield" index="0"]
+offset_left = 14.0
+offset_top = 23.0
+offset_right = 214.0
+offset_bottom = 223.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_ct1pf")
+metadata/_edit_use_anchors_ = true
+
+[node name="Defibrillator" parent="." instance=ExtResource("2_wdrhd")]
+position = Vector2(312, 24)
+normal_img = ExtResource("7_w0bf7")
+angry_img = ExtResource("7_w0bf7")
+destroyed_img = ExtResource("8_15u1f")
+part_name = "变压器"
+part_mhp = 16
+part_id = "boss_7_part2"
+intention_offset = Vector2(99, -28)
+
+[node name="TextureRect" parent="Defibrillator" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_w0bf7")
+metadata/_edit_use_anchors_ = true
+
+[node name="WireOperator" parent="." instance=ExtResource("2_wdrhd")]
+position = Vector2(90, 290)
+normal_img = ExtResource("9_nsmj7")
+angry_img = ExtResource("9_nsmj7")
+destroyed_img = ExtResource("10_lpytv")
+part_name = "电线"
+part_mhp = 16
+part_id = "boss_7_part3"
+intention_offset = Vector2(21, 0)
+
+[node name="TextureRect" parent="WireOperator" index="0"]
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("9_nsmj7")
+metadata/_edit_use_anchors_ = true
+
+[editable path="ComputerVirus"]
+[editable path="E_Shield"]
+[editable path="Defibrillator"]
+[editable path="WireOperator"]

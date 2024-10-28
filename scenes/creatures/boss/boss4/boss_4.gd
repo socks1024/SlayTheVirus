@@ -43,7 +43,8 @@ func decide_intention():
 	if shield.destroyed || shield.get_buff_amount("stun") > 0:
 		set_part_intention(shield,StunIntention.new(shield,shield))
 	else:
-		set_part_intention(shield,DefenseIntention.new(randi_range(1,7),mr_chaos,shield))
+		set_part_intention(shield,DefenseIntention.new(randi_range(1,3),mr_chaos,shield))
+		set_part_intention(shield,DefenseIntention.new(randi_range(1,3),shield,shield))
 	
 	#endregion
 	

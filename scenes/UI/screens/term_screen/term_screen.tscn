@@ -77,6 +77,7 @@ texture_hover = ExtResource("7_gkpw6")
 script = ExtResource("2_4uwo6")
 
 [node name="back2" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -245,7 +246,6 @@ text = "垃圾牌：
 label_settings = SubResource("LabelSettings_0c2wm")
 
 [node name="back1" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0

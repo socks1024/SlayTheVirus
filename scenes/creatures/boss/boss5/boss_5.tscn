@@ -21,10 +21,10 @@ normal_img = ExtResource("3_uaoqm")
 angry_img = ExtResource("4_5prx7")
 destroyed_img = ExtResource("4_5prx7")
 part_name = "贵族十三世"
-part_mhp = 50
+part_mhp = 39
 part_id = "boss_5_main"
 is_main_part = true
-intention_offset = Vector2(136, 112)
+intention_offset = Vector2(416, 79)
 
 [node name="TextureRect" parent="RoyalViruXIII" index="0"]
 scale = Vector2(0.6, 0.6)
@@ -37,7 +37,7 @@ normal_img = ExtResource("5_t8fg0")
 angry_img = ExtResource("5_t8fg0")
 destroyed_img = ExtResource("6_s8nuu")
 part_name = "咖啡杯"
-part_mhp = 12
+part_mhp = 6
 part_id = "boss_5_part1"
 intention_offset = Vector2(171, 88)
 
@@ -56,7 +56,7 @@ normal_img = ExtResource("7_gisnf")
 angry_img = ExtResource("7_gisnf")
 destroyed_img = ExtResource("8_fu64m")
 part_name = "刺剑（右）"
-part_mhp = 20
+part_mhp = 12
 part_id = "boss_5_part2"
 intention_offset = Vector2(213, 84)
 
@@ -73,7 +73,7 @@ normal_img = ExtResource("9_q8rac")
 angry_img = ExtResource("9_q8rac")
 destroyed_img = ExtResource("10_wvcim")
 part_name = "刺剑（左）"
-part_mhp = 20
+part_mhp = 12
 part_id = "boss_5_part3"
 intention_offset = Vector2(240, 80)
 

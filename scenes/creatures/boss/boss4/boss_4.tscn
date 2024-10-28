@@ -71,7 +71,7 @@ normal_img = ExtResource("9_gsbbm")
 angry_img = ExtResource("9_gsbbm")
 destroyed_img = ExtResource("10_63r6p")
 part_name = "盾壳"
-part_mhp = 30
+part_mhp = 20
 part_id = "boss_3_part3"
 intention_offset = Vector2(240, 180)
 

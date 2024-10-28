@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cdumg8qqscvp3"]
+[gd_scene load_steps=42 format=3 uid="uid://cdumg8qqscvp3"]
 
 [ext_resource type="Script" path="res://src/scenes/UI/screens/battle_screen/battle_screen.gd" id="1_31562"]
 [ext_resource type="Script" path="res://src/scripts/battle/player/player_card_manager/player_card_manager.gd" id="2_15quh"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://b80sgmxkbjsmb" path="res://src/scenes/creatures/stat_bar/stat_bar.tscn" id="4_qlbl8"]
 [ext_resource type="PackedScene" uid="uid://kcu2es42x2ep" path="res://src/scenes/creatures/buff/buff.tscn" id="4_uqav3"]
 [ext_resource type="Script" path="res://src/scripts/battle/player/board/board.gd" id="6_vx04r"]
+[ext_resource type="PackedScene" uid="uid://def03jdo2lux4" path="res://src/scenes/creatures/boss/boss6/boss_6.tscn" id="7_8wum3"]
 [ext_resource type="Texture2D" uid="uid://e2trdq2sd2tx" path="res://src/resources/GUI/go_button/idle_ps.png" id="7_ij8wv"]
+[ext_resource type="PackedScene" uid="uid://57d5li3qny7o" path="res://src/scenes/creatures/boss/boss7/boss_7.tscn" id="8_1hwln"]
 [ext_resource type="Texture2D" uid="uid://4fcwnrbyl1cn" path="res://src/resources/GUI/go_button/pressed_ps.png" id="8_6sgi8"]
 [ext_resource type="Script" path="res://src/scripts/battle/player/board/cell.gd" id="8_u4331"]
 [ext_resource type="PackedScene" uid="uid://dok72tw4x8xo4" path="res://src/scenes/creatures/boss/boss1/boss_1.tscn" id="9_q4vhq"]
@@ -21,11 +23,13 @@
 [ext_resource type="Texture2D" uid="uid://b85wig8677pba" path="res://src/resources/board/未解锁块.png" id="15_0oopg"]
 [ext_resource type="Texture2D" uid="uid://bmfvlw406aapg" path="res://src/resources/GUI/battleUI/弃牌.png" id="15_4nmeo"]
 [ext_resource type="Script" path="res://src/scripts/GUI/button.gd" id="16_1o5ot"]
-[ext_resource type="Texture2D" uid="uid://srquvpy5rlmu" path="res://src/resources/board/back5.png" id="16_odmmd"]
 [ext_resource type="Texture2D" uid="uid://bfw05fbtk8fpt" path="res://src/resources/GUI/battleUI/看牌.png" id="17_8ryth"]
+[ext_resource type="PackedScene" uid="uid://dgpn4r6lnesoc" path="res://src/scenes/creatures/boss/boss8/boss_8.tscn" id="17_xs05w"]
+[ext_resource type="PackedScene" uid="uid://bw37hjyjqjd5h" path="res://src/scenes/creatures/boss/boss9/boss_9.tscn" id="18_dmutq"]
 [ext_resource type="Texture2D" uid="uid://bgr2tj4jpxuyx" path="res://src/resources/GUI/battleUI/exhaustbutton.png" id="18_gc0at"]
 [ext_resource type="Texture2D" uid="uid://b5si2r478nixp" path="res://src/resources/GUI/battleUI/设置.png" id="18_rjc1l"]
 [ext_resource type="Texture2D" uid="uid://b2rcmtna04u82" path="res://src/resources/GUI/battleUI/返回.png" id="19_53qf0"]
+[ext_resource type="Texture2D" uid="uid://bxxmo8th8xldi" path="res://src/resources/board/back9.png" id="20_nkb6y"]
 [ext_resource type="Texture2D" uid="uid://dkbnpqc6eku04" path="res://src/resources/intention&table/drawpile.png" id="22_dv2sp"]
 [ext_resource type="Script" path="res://src/scripts/GUI/card_window.gd" id="22_tsx7d"]
 [ext_resource type="Texture2D" uid="uid://cosbvy4ke41kt" path="res://src/resources/intention&table/pileback.png" id="23_53f4q"]
@@ -58,6 +62,10 @@ boss_2 = ExtResource("3_v51am")
 boss_3 = ExtResource("12_c4gn4")
 boss_4 = ExtResource("13_3looa")
 boss_5 = ExtResource("14_83krh")
+boss_6 = ExtResource("7_8wum3")
+boss_7 = ExtResource("8_1hwln")
+boss_8 = ExtResource("17_xs05w")
+boss_9 = ExtResource("18_dmutq")
 
 [node name="BattleManager" type="Node2D" parent="."]
 script = ExtResource("2_yrqar")
@@ -219,7 +227,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
-texture = ExtResource("16_odmmd")
+texture = ExtResource("20_nkb6y")
 
 [node name="RightBack" type="TextureRect" parent="."]
 z_index = -9

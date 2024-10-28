@@ -4,6 +4,10 @@ extends Node2D
 var creature:BaseCreature
 @onready var backgroundfront = $BackGroundFront
 @onready var backgroundback = $BackGroundBack
+@onready var buff_root = $BuffRoot
+@onready var health_bar = $HealthBar
+
+
 
 func connect_creature(new_creature:BaseCreature):
 	
@@ -47,7 +51,7 @@ func refresh_health_bar():
 	$HealthBar.max_value = health_bar_max_value
 	$HealthBar.value = health_bar_value
 	
-	$HealthBar/HealthNum.text = str(health_bar_value) + "/" + str(health_bar_max_value)
+	$HealthNum.text = str(health_bar_value) + "/" + str(health_bar_max_value)
 
 var block_value:int
 

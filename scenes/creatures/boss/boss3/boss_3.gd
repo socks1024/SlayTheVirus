@@ -52,7 +52,7 @@ func decide_intention():
 		if virus_army.health == virus_army.maxhealth:
 			set_part_intention(heart_virus,ApplyDebuffIntention.new(2,battle_manager.player,heart_virus,"paralysis"))
 		else:
-			set_part_intention(heart_virus,HealIntention.new(4,virus_army,heart_virus))
+			set_part_intention(heart_virus,HealIntention.new(3,virus_army,heart_virus))
 	
 	#endregion
 	

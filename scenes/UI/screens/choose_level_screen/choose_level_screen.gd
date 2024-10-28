@@ -10,6 +10,10 @@ func _ready():
 
 func enter():
 	super()
+	
+	if !secret_level_entered && levels_pass_condition[7]:
+		enter_battle(9)
+	
 	refresh_levels()
 
 func _on_return_pressed():
@@ -65,6 +69,8 @@ var passed_imgs = [lv1_3,lv2_3,lv3_3,lv4_3,lv5_3,lv6_3,lv7_3,lv8_3]
 #endregion
 
 #region level logic
+
+var secret_level_entered = false
 
 var level_amount = 8
 
@@ -147,6 +153,5 @@ func _on_level_8_button_pressed():
 func enter_battle(index:int):
 	main.battle_screen.index = index
 	main.switch_screen(main.battle_screen)
-
 
 #endregion

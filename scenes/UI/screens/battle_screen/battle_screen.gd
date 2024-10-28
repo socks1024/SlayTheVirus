@@ -7,6 +7,7 @@ var index = 1
 @onready var player_stat_bar = $BattleManager/PlayerStatBar
 @onready var battle_manager = $BattleManager
 
+@onready var left_back = $LeftBack
 
 func enter():
 	super()
@@ -25,7 +26,6 @@ var music
 var bg_texture
 
 func initialize_battle():
-	
 	
 	var boss:Boss
 	match index:
@@ -68,8 +68,17 @@ func initialize_battle():
 			boss = boss_8.instantiate()
 			music = main.battle_5_opening
 			bg_texture = boss_8_background
+		9:
+			#boss = boss_1.instantiate()
+			boss = boss_9.instantiate()
+			music = main.battle_1_opening
+			bg_texture = boss_9_background
 	
 	$LeftBack.texture = bg_texture
+	
+	for n in player_stat_bar.buff_root.get_children():
+		player_stat_bar.buff_root.remove_child(n)
+		n.queue_free()
 	
 	for b in $BattleManager/MonsterManager.get_children():
 		b.queue_free()
@@ -81,6 +90,11 @@ func initialize_battle():
 	turn_end.connect(_on_turn_end)
 	
 	$BattleManager/PlayerCardManager.connect_battle_signal()
+	
+	main.player.health = main.player.maxhealth
+	main.player.block = 0
+	main.player.cards_per_turn = 5
+	main.player.buffs.clear()
 	
 	player_stat_bar.connect_creature(main.player)
 	enemy_stat_bar.connect_creature(boss.main_part)
@@ -180,9 +194,13 @@ func _on_turn_end():
 	get_tree().create_timer(0.5).timeout.connect(turn_start.emit)
 
 func _on_battle_end(win:bool):
+	if index == 9:
+		main.choose_level_screen.secret_level_entered = true
+	
 	if win:
-		level_pass.emit(index)
-		level_unlock.emit(index + 1)
+		if index <= 8:
+			level_pass.emit(index)
+			level_unlock.emit(index + 1)
 		$WinOrLose.texture = win_texture
 		main.bgm_player.stop()
 		main.play_sound(main.victory_sound)
@@ -192,6 +210,8 @@ func _on_battle_end(win:bool):
 		main.play_sound(main.shock_sound)
 	
 	$WinOrLose.show()
+	
+	main.in_battle = false
 	
 	var timer = get_tree().create_timer(4)
 	timer.timeout.connect($WinOrLose.hide)
